@@ -93,21 +93,6 @@ export const timeline: TimelineEntry[] = [
     cover: null,
   },
   {
-    id: 'revista-eureka-2025',
-    year: '2025',
-    title: 'Revista Eureka — 3ª edição',
-    confirmed: true,
-    cover: null,
-  },
-  {
-    id: 'ways-2025',
-    year: '2025',
-    title: 'Ways Bilingual School',
-    organization: 'via Arco Educação',
-    confirmed: true,
-    cover: null,
-  },
-  {
     id: 'explorum-2026',
     year: '2026',
     title: 'Explorum — Educação Digital',

@@ -41,23 +41,6 @@ export interface PortfolioProject {
 
 export const projects: PortfolioProject[] = [
   {
-    id: 'trilhas-matematica-8',
-    title: 'Trilhas Matemática — 8º ano',
-    client: 'Saraiva / Grupo SM',
-    year: '[CONTEÚDO A CONFIRMAR]',
-    category: ['pnld', 'education'],
-    role: ['Diagramação', 'Checklist de capítulo', 'Fechamento de arte para gráfica'],
-    tools: ['Adobe InDesign'],
-    summary: {
-      pt: '[CONTEÚDO A CONFIRMAR]',
-      en: '[CONTENT TO CONFIRM]',
-    },
-    scope: 'PNLD',
-    publishable: true,
-    featured: true,
-    assets: [],
-  },
-  {
     id: 'poliedro',
     title: 'Poliedro Educação',
     client: 'Poliedro Educação',
@@ -120,21 +103,6 @@ export const projects: PortfolioProject[] = [
     assets: [],
   },
   {
-    id: 'ways-bilingual-school',
-    title: 'Ways Bilingual School',
-    partner: 'Arco Educação',
-    year: 'dez/2025',
-    category: ['education'],
-    role: ['[CONTEÚDO A CONFIRMAR]'],
-    summary: {
-      pt: 'Projeto realizado via Arco Educação, reforçando experiência em educação bilíngue.',
-      en: 'Project delivered via Arco Educação, reinforcing experience in bilingual education.',
-    },
-    publishable: true,
-    featured: false,
-    assets: [],
-  },
-  {
     id: 'mentalidades-matematicas',
     title: 'Mentalidades Matemáticas',
     client: 'Mentalidades Matemáticas',
@@ -144,21 +112,6 @@ export const projects: PortfolioProject[] = [
     summary: {
       pt: 'Relatórios de atividades 2024 e 2025. Cliente recorrente.',
       en: 'Activity reports for 2024 and 2025. Recurring client.',
-    },
-    publishable: true,
-    featured: false,
-    assets: [],
-  },
-  {
-    id: 'revista-eureka',
-    title: 'Revista Eureka — 3ª edição',
-    client: 'Revista Eureka',
-    year: 'nov/2025',
-    category: ['magazine'],
-    role: ['Diagramação de revista'],
-    summary: {
-      pt: 'Diagramação da 3ª edição da revista.',
-      en: 'Layout of the magazine’s 3rd edition.',
     },
     publishable: true,
     featured: false,
