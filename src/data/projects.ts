@@ -3,6 +3,12 @@
 // Não inventar clientes, datas, cargos, números ou resultados.
 // Onde faltar confirmação, usar '[CONTEÚDO A CONFIRMAR]' / '[CONTENT TO CONFIRM]'.
 
+import sustentabilidadeEurekaCover from '../assets/projects/sustentabilidade-eureka/cover.jpg';
+import comecandoAlbertinaCover from '../assets/projects/comecando-albertina/cover.png';
+import comodinesTransmediaCover from '../assets/projects/comodines-transmedia/cover.jpg';
+import poemasMiudinhosCover from '../assets/projects/poemas-miudinhos/cover.png';
+import depoisDoTremorCover from '../assets/projects/depois-do-tremor/cover.png';
+
 export type ProjectCategory =
   | 'pnld'
   | 'education'
@@ -11,7 +17,8 @@ export type ProjectCategory =
   | 'institutional'
   | 'commercial'
   | 'digital'
-  | 'magazine';
+  | 'magazine'
+  | 'literary';
 
 export interface ProjectAsset {
   src: string;
@@ -131,6 +138,92 @@ export const projects: PortfolioProject[] = [
     publishable: true,
     featured: false,
     assets: [],
+  },
+  {
+    id: 'sustentabilidade-eureka',
+    title: 'Sustentabilidade — Livro do Educador',
+    client: 'Grupo Eureka',
+    year: '[CONTEÚDO A CONFIRMAR]',
+    category: ['education', 'children'],
+    role: ['Design de capa'],
+    summary: {
+      pt: 'Capas para coleção de 3 volumes (Educação Infantil, 1º-2º ano e 3º-5º ano do Ensino Fundamental). Autoras Juliana Cuoco Badari e Luciana Moreira Martins.',
+      en: 'Covers for a 3-volume collection (Early Childhood, Elementary grades 1-2 and 3-5). Authors Juliana Cuoco Badari and Luciana Moreira Martins.',
+    },
+    publishable: true,
+    featured: false,
+    assets: [
+      { src: sustentabilidadeEurekaCover, alt: 'Capas da coleção Sustentabilidade, Grupo Eureka, volumes 1 a 3', type: 'cover' },
+    ],
+  },
+  {
+    id: 'comecando-albertina',
+    title: 'Começando Albertina — nossa vida no armário nos anos 90',
+    client: 'Editacuja',
+    year: '[CONTEÚDO A CONFIRMAR]',
+    category: ['literary', 'commercial'],
+    role: ['Design de capa e embalagem'],
+    summary: {
+      pt: 'Projeto gráfico completo (capa, caixa e miolo de abertura) do livro de Deise Abreu Pacheco, com conceito visual de fita cassete.',
+      en: 'Full graphic design (cover, slipcase and opening spread) for Deise Abreu Pacheco’s book, built around a cassette-tape visual concept.',
+    },
+    publishable: true,
+    featured: false,
+    assets: [
+      { src: comecandoAlbertinaCover, alt: 'Capa, caixa e contracapa de "Começando Albertina", editora Editacuja', type: 'cover' },
+    ],
+  },
+  {
+    id: 'comodines-transmedia',
+    title: 'Los Comodines de Transmedia (TME)',
+    client: 'Editacuja',
+    partner: 'MinTIC / Proexport Colômbia',
+    year: '[CONTEÚDO A CONFIRMAR]',
+    category: ['digital', 'literary'],
+    role: ['Design gráfico'],
+    summary: {
+      pt: 'Kit educativo em caixa (livro-guia + cartas) sobre transmídia para o mercado editorial. Crédito de "Design gráfico: Bruna Marchi" na ficha técnica da peça.',
+      en: 'Boxed educational kit (guidebook + card deck) on transmedia for the publishing industry. Credited "Graphic design: Bruna Marchi" on the piece’s colophon.',
+    },
+    publishable: true,
+    featured: false,
+    assets: [
+      { src: comodinesTransmediaCover, alt: 'Caixa e cartas do kit "Los Comodines de Transmedia", com crédito de design gráfico de Bruna Marchi', type: 'cover' },
+    ],
+  },
+  {
+    id: 'poemas-miudinhos',
+    title: 'Poemas Miudinhos — para brincar e ritmar',
+    client: 'Caramelo',
+    year: '[CONTEÚDO A CONFIRMAR]',
+    category: ['children', 'literary'],
+    role: ['Design de capa'],
+    summary: {
+      pt: 'Capa de livro infantil de poemas, texto de Neusa Sorrenti e ilustrações de Gabriela Gil.',
+      en: 'Cover for a children’s poetry book, written by Neusa Sorrenti with illustrations by Gabriela Gil.',
+    },
+    publishable: true,
+    featured: false,
+    assets: [
+      { src: poemasMiudinhosCover, alt: 'Capa de "Poemas Miudinhos — para brincar e ritmar", editora Caramelo', type: 'cover' },
+    ],
+  },
+  {
+    id: 'depois-do-tremor',
+    title: 'Depois do Tremor',
+    client: '[CONTEÚDO A CONFIRMAR]',
+    year: '[CONTEÚDO A CONFIRMAR]',
+    category: ['literary'],
+    role: ['Design de capa'],
+    summary: {
+      pt: 'Capa do livro de Jean Portante, tradução de Maria João Cantinho.',
+      en: 'Cover for Jean Portante’s book, translated by Maria João Cantinho.',
+    },
+    publishable: true,
+    featured: false,
+    assets: [
+      { src: depoisDoTremorCover, alt: 'Capa de "Depois do Tremor", de Jean Portante', type: 'cover' },
+    ],
   },
   {
     id: 'editora-do-brasil',

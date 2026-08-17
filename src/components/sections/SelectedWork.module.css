@@ -97,3 +97,9 @@
   letter-spacing: 0.06em;
   text-align: center;
 }
+
+.cover {
+  width: 100%;
+  height: auto;
+  border: var(--border-hairline);
+}

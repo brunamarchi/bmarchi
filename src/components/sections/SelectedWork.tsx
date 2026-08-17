@@ -47,9 +47,18 @@ export function SelectedWork() {
                       <div>{project.tools.join(' · ')}</div>
                     </div>
                   )}
-                  <div className={styles.placeholder}>
-                    {project.publishable ? t.selectedWork.caseComingSoon : t.selectedWork.notPublishable}
-                  </div>
+                  {project.assets[0] ? (
+                    <img
+                      className={styles.cover}
+                      src={project.assets[0].src}
+                      alt={project.assets[0].alt}
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className={styles.placeholder}>
+                      {project.publishable ? t.selectedWork.caseComingSoon : t.selectedWork.notPublishable}
+                    </div>
+                  )}
                 </div>
               </div>
             </details>
