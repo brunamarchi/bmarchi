@@ -1,0 +1,101 @@
+.quote {
+  font-family: var(--font-serif);
+  font-size: var(--step-h1);
+  max-width: 20ch;
+  margin-bottom: var(--space-7);
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+}
+
+.yearGroup {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  gap: var(--space-4);
+  padding-block: var(--space-5);
+  border-top: var(--border-hairline);
+}
+
+.yearGroup:last-child {
+  border-bottom: var(--border-hairline);
+}
+
+.year {
+  font-family: var(--font-serif);
+  font-size: var(--step-h2);
+  color: var(--color-ink-faint);
+}
+
+.entries {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.entry {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.cover {
+  aspect-ratio: 3/4;
+  border: 1px dashed var(--color-line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  color: var(--color-ink-faint);
+  text-align: center;
+  padding: var(--space-1);
+}
+
+.entryTitle {
+  font-family: var(--font-sans);
+  font-weight: 500;
+}
+
+.entryOrg {
+  color: var(--color-ink-soft);
+  font-size: var(--step-small);
+}
+
+.entryNote {
+  color: var(--color-ink-faint);
+  font-size: var(--step-small);
+}
+
+.priorHistory {
+  margin-top: var(--space-7);
+  padding-top: var(--space-6);
+  border-top: var(--border-hairline);
+}
+
+.priorHistoryTitle {
+  composes: eyebrow from global;
+  margin-bottom: var(--space-2);
+}
+
+.priorHistoryNote {
+  color: var(--color-ink-faint);
+  font-size: var(--step-small);
+  max-width: 48ch;
+  margin-bottom: var(--space-4);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.chip {
+  font-family: var(--font-sans);
+  font-size: var(--step-small);
+  border: 1px solid var(--color-line);
+  padding: var(--space-1) var(--space-3);
+  color: var(--color-ink-soft);
+}
