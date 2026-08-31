@@ -8,6 +8,15 @@ import comecandoAlbertinaCover from '../assets/projects/comecando-albertina/cove
 import comodinesTransmediaCover from '../assets/projects/comodines-transmedia/cover.jpg';
 import poemasMiudinhosCover from '../assets/projects/poemas-miudinhos/cover.png';
 import depoisDoTremorCover from '../assets/projects/depois-do-tremor/cover.png';
+import poliedroCover from '../assets/projects/poliedro/cover.jpg';
+import josaparCover from '../assets/projects/josapar-tio-joao/cover.jpg';
+import explorumCover from '../assets/projects/explorum/cover.jpg';
+import yoyoSecreto from '../assets/projects/yoyo-books/cover-secreto.jpg';
+import yoyoGalinhas from '../assets/projects/yoyo-books/cover-galinhas.jpg';
+import yoyoNaFazenda from '../assets/projects/yoyo-books/cover-na-fazenda.jpg';
+import yoyoAbaGalinha from '../assets/projects/yoyo-books/cover-aba-galinha.jpg';
+import yoyoAbaUrso from '../assets/projects/yoyo-books/cover-aba-urso.jpg';
+import yoyoResolva from '../assets/projects/yoyo-books/cover-resolva.jpg';
 
 export type ProjectCategory =
   | 'pnld'
@@ -62,7 +71,9 @@ export const projects: PortfolioProject[] = [
     scope: 'Precisão, escala, consistência e prazo',
     publishable: true,
     featured: true,
-    assets: [],
+    assets: [
+      { src: poliedroCover, alt: 'Cadernos Octa Mais e revisões Poliedro, Ensino Médio e Pré-Vestibular', type: 'cover' },
+    ],
   },
   {
     id: 'yoyo-books',
@@ -77,7 +88,14 @@ export const projects: PortfolioProject[] = [
     },
     publishable: true,
     featured: true,
-    assets: [],
+    assets: [
+      { src: yoyoSecreto, alt: '"Minha Caneta Espiã" e "Minha Caneta Secreta", livros com caneta de tinta invisível', type: 'cover' },
+      { src: yoyoGalinhas, alt: '"Galinha e seus amigos", primeiro livro e quebra-cabeça de madeira', type: 'cover' },
+      { src: yoyoNaFazenda, alt: '"Na Fazenda", livro toque e sinta com quebra-cabeça de madeira', type: 'cover' },
+      { src: yoyoAbaGalinha, alt: '"Levante a aba e descubra — Fazenda", exemplar impresso', type: 'photo' },
+      { src: yoyoAbaUrso, alt: 'Livro de abas "Levante a aba e descubra", exemplar impresso', type: 'photo' },
+      { src: yoyoResolva, alt: '"Resolva, apague e refaça" — Adição e subtração, e Tabuada', type: 'cover' },
+    ],
   },
   {
     id: 'ingles-mackenzie',
@@ -107,7 +125,9 @@ export const projects: PortfolioProject[] = [
     },
     publishable: true,
     featured: false,
-    assets: [],
+    assets: [
+      { src: explorumCover, alt: 'Capas da Coleção Explorum, Livro do Aluno, Gaudí Editorial', type: 'cover' },
+    ],
   },
   {
     id: 'mentalidades-matematicas',
@@ -137,7 +157,9 @@ export const projects: PortfolioProject[] = [
     },
     publishable: true,
     featured: false,
-    assets: [],
+    assets: [
+      { src: josaparCover, alt: 'Capa do livreto "Arroz Tio João — para cozinhar e encantar!"', type: 'cover' },
+    ],
   },
   {
     id: 'sustentabilidade-eureka',

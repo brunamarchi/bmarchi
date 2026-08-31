@@ -29,36 +29,53 @@ export function SelectedWork() {
                 <span className={styles.year}>{project.year ?? '—'}</span>
               </summary>
               <div className={styles.details}>
-                <div>
-                  {project.summary && (
-                    <p className={styles.summaryText}>
-                      {locale === 'pt' ? project.summary.pt : project.summary.en}
-                    </p>
-                  )}
-                </div>
-                <div className={styles.meta}>
-                  <div>
-                    <div className={styles.metaLabel}>Role</div>
-                    <div>{project.role.join(' · ')}</div>
-                  </div>
-                  {project.tools && (
-                    <div>
-                      <div className={styles.metaLabel}>Tools</div>
-                      <div>{project.tools.join(' · ')}</div>
-                    </div>
-                  )}
-                  {project.assets[0] ? (
+                {project.assets.length > 0 ? (
+                  <div className={styles.gallery}>
                     <img
                       className={styles.cover}
                       src={project.assets[0].src}
                       alt={project.assets[0].alt}
                       loading="lazy"
                     />
-                  ) : (
-                    <div className={styles.placeholder}>
-                      {project.publishable ? t.selectedWork.caseComingSoon : t.selectedWork.notPublishable}
+                    {project.assets.length > 1 && (
+                      <div className={styles.thumbRow}>
+                        {project.assets.slice(1).map((asset) => (
+                          <img
+                            className={styles.thumb}
+                            src={asset.src}
+                            alt={asset.alt}
+                            loading="lazy"
+                            key={asset.src}
+                          />
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <div className={styles.placeholder}>
+                    {project.publishable ? t.selectedWork.caseComingSoon : t.selectedWork.notPublishable}
+                  </div>
+                )}
+                <div className={styles.detailsGrid}>
+                  <div>
+                    {project.summary && (
+                      <p className={styles.summaryText}>
+                        {locale === 'pt' ? project.summary.pt : project.summary.en}
+                      </p>
+                    )}
+                  </div>
+                  <div className={styles.meta}>
+                    <div>
+                      <div className={styles.metaLabel}>Role</div>
+                      <div>{project.role.join(' · ')}</div>
                     </div>
-                  )}
+                    {project.tools && (
+                      <div>
+                        <div className={styles.metaLabel}>Tools</div>
+                        <div>{project.tools.join(' · ')}</div>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </details>
