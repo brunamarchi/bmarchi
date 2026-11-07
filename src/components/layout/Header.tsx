@@ -27,7 +27,7 @@ export function Header() {
       <header className={styles.header}>
         <a href="#top" className={styles.name}>
           {profile.name.toUpperCase()}
-          <span className={styles.role}>{t.cover.eyebrowRole}</span>
+          <span className={styles.role}>{t.header.role}</span>
         </a>
         <div className={styles.right}>
           <span className={styles.location}>{profile.location}</span>

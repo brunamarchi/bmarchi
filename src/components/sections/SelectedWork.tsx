@@ -1,9 +1,23 @@
+import { useState } from 'react';
 import { useI18n } from '../../i18n';
-import { projects } from '../../data/projects';
+import { projects, segments, type ProjectSegment } from '../../data/projects';
+import { ProjectCard } from '../ProjectCard';
 import styles from './SelectedWork.module.css';
+
+type Filter = 'all' | ProjectSegment;
 
 export function SelectedWork() {
   const { t, locale } = useI18n();
+  const [filter, setFilter] = useState<Filter>('all');
+
+  const visible = projects.filter((p) => filter === 'all' || p.segment === filter);
+  const withImages = visible.filter((p) => p.assets.length > 0);
+  const textOnly = visible.filter((p) => p.assets.length === 0);
+
+  const filters: { id: Filter; label: string }[] = [
+    { id: 'all', label: t.selectedWork.filterAll },
+    ...segments.map((s) => ({ id: s, label: t.selectedWork.segments[s as keyof typeof t.selectedWork.segments] })),
+  ];
 
   return (
     <section id="work" className="chapter" aria-labelledby="work-heading">
@@ -14,73 +28,50 @@ export function SelectedWork() {
         <h2 id="work-heading" className="chapter-title">
           {t.selectedWork.title}
         </h2>
-        <p className={styles.intro}>{t.selectedWork.intro}</p>
 
-        <div className={styles.list}>
-          {projects.map((project, i) => (
-            <details className={styles.item} key={project.id}>
-              <summary className={styles.summary}>
-                <span className={styles.index}>{String(i + 1).padStart(2, '0')}</span>
-                <span className={styles.title}>
-                  {project.title}
-                  {project.client && <span className={styles.client}>{project.client}</span>}
-                </span>
-                <span className={styles.client}>{project.partner ?? project.category[0]}</span>
-                <span className={styles.year}>{project.year ?? '—'}</span>
-              </summary>
-              <div className={styles.details}>
-                {project.assets.length > 0 ? (
-                  <div className={styles.gallery}>
-                    <img
-                      className={styles.cover}
-                      src={project.assets[0].src}
-                      alt={project.assets[0].alt}
-                      loading="lazy"
-                    />
-                    {project.assets.length > 1 && (
-                      <div className={styles.thumbRow}>
-                        {project.assets.slice(1).map((asset) => (
-                          <img
-                            className={styles.thumb}
-                            src={asset.src}
-                            alt={asset.alt}
-                            loading="lazy"
-                            key={asset.src}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ) : (
-                  <div className={styles.placeholder}>
-                    {project.publishable ? t.selectedWork.caseComingSoon : t.selectedWork.notPublishable}
-                  </div>
-                )}
-                <div className={styles.detailsGrid}>
-                  <div>
-                    {project.summary && (
-                      <p className={styles.summaryText}>
-                        {locale === 'pt' ? project.summary.pt : project.summary.en}
-                      </p>
-                    )}
-                  </div>
-                  <div className={styles.meta}>
-                    <div>
-                      <div className={styles.metaLabel}>Role</div>
-                      <div>{project.role.join(' · ')}</div>
-                    </div>
-                    {project.tools && (
-                      <div>
-                        <div className={styles.metaLabel}>Tools</div>
-                        <div>{project.tools.join(' · ')}</div>
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </details>
+        <div className={styles.toolbar}>
+          <p className={styles.intro}>{t.selectedWork.intro}</p>
+          <div className={styles.filters} role="group" aria-label={t.selectedWork.filterLabel}>
+            {filters.map((f) => (
+              <button
+                type="button"
+                key={f.id}
+                className={styles.filter}
+                aria-pressed={filter === f.id}
+                onClick={() => setFilter(f.id)}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className={styles.grid}>
+          {withImages.map((project) => (
+            <ProjectCard project={project} key={project.id} />
           ))}
         </div>
+
+        {textOnly.length > 0 && (
+          <div className={styles.also}>
+            <h3 className={styles.alsoTitle}>
+              {t.selectedWork.alsoTitle} <span>— {t.selectedWork.noImages}</span>
+            </h3>
+            <ul className={styles.alsoList}>
+              {textOnly.map((p) => (
+                <li className={styles.alsoItem} key={p.id}>
+                  <span className={styles.alsoName}>{p.title}</span>
+                  <span className={styles.alsoKind}>
+                    {p.kind[locale]}
+                    {p.partner && ` · ${p.partner}`}
+                  </span>
+                  <span className={styles.alsoYear}>{p.year}</span>
+                  <p className={styles.alsoSummary}>{p.summary[locale]}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </section>
   );

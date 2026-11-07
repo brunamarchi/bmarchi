@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://brunamarchi.example/sitemap.xml
+Sitemap: https://brunamarchi.github.io/bmarchi/sitemap.xml

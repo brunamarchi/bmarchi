@@ -1,4 +1,5 @@
 import { useI18n } from '../../i18n';
+import { clients } from '../../data/profile';
 import styles from './Intro.module.css';
 
 export function Intro() {
@@ -16,13 +17,14 @@ export function Intro() {
 
         <p className={styles.lead}>{t.intro.lead}</p>
 
-        <div className={styles.words} aria-hidden="true">
-          {t.intro.words.map((word) => (
-            <span key={word}>{word}</span>
+        <h3 className={styles.areasTitle}>{t.intro.clientsTitle}</h3>
+        <ul className={styles.clients}>
+          {clients.map((name) => (
+            <li key={name}>{name}</li>
           ))}
-        </div>
+        </ul>
 
-        <span className={styles.areasTitle}>{t.intro.areasTitle}</span>
+        <h3 className={styles.areasTitle}>{t.intro.areasTitle}</h3>
         <ol className={styles.areas}>
           {t.intro.areas.map((area, i) => (
             <li className={styles.area} key={area.title}>

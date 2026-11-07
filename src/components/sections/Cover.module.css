@@ -27,12 +27,58 @@
   font-style: italic;
 }
 
+.role {
+  font-family: var(--font-sans);
+  font-size: var(--step-small);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-ink-soft);
+  margin: 0 0 var(--space-4);
+}
+
 .subtitle {
   margin-top: var(--space-5);
-  max-width: 34ch;
+  max-width: 44ch;
   font-family: var(--font-sans);
   font-size: var(--step-body-lg);
   color: var(--color-ink-soft);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}
+
+.ctaPrimary,
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 var(--space-4);
+  font-family: var(--font-sans);
+  font-size: var(--step-small);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--color-ink);
+  transition: background var(--duration-fast), color var(--duration-fast);
+}
+
+.ctaPrimary {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+.ctaPrimary:hover {
+  background: transparent;
+  color: var(--color-ink);
+}
+
+.ctaSecondary:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
 }
 
 .bottom {

@@ -3,10 +3,20 @@
   font-size: var(--step-display);
   line-height: 1;
   max-width: 16ch;
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-4);
+}
+
+.lead {
+  font-family: var(--font-sans);
+  font-size: var(--step-body-lg);
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-6);
 }
 
 .links {
+  list-style: none;
+  margin-top: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   border-top: var(--border-hairline);
@@ -29,9 +39,21 @@
   letter-spacing: 0.06em;
 }
 
+.link {
+  gap: var(--space-3);
+  transition: padding var(--duration-fast) var(--ease-editorial);
+}
+
+.link:hover .linkValue {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
 .linkValue {
   font-family: var(--font-serif);
   font-size: var(--step-h3);
+  text-align: right;
+  overflow-wrap: anywhere;
 }
 
 .colophon {

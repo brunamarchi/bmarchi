@@ -19,7 +19,9 @@ export const tools: string[] = [
   'Adobe InDesign',
   'Adobe Photoshop',
   'Adobe Illustrator',
-  'WoodWing',
+  'WoodWing Studio / Assets',
+  'MathType',
+  'Mathtools',
   'Figma',
   'Adobe Firefly',
 ];
@@ -32,20 +34,49 @@ export const expertiseAreas: string[] = [
   'artDirection',
   'editorialCoordination',
   'layout',
+  'covers',
   'editorialProduction',
   'illustration',
   'imageAdaptation',
   'fileClosing',
   'printAndDigital',
+  'webDesign',
+];
+
+// Editoras e clientes com quem já trabalhou — mostrados como prova logo no
+// início do site. Os nomes do "histórico anterior" já eram públicos no site;
+// anos e responsabilidades seguem sem detalhe até ela confirmar.
+export const clients: string[] = [
+  'Editora do Brasil',
+  'Poliedro Educação',
+  'Saraiva',
+  'Moderna',
+  'Macmillan',
+  'Guinness Book',
+  'Editacuja',
+  'Yoyo Books',
+  'Grupo Eureka',
+  'Explorum',
+  'Lotus Estúdio',
+  'Obá Editorial',
+  'A Girafa Editora',
+  'Josapar / Tio João',
 ];
 
 export const profile = {
   name: 'Bruna Marchi',
-  role: 'Editorial Practice',
   location: 'Santa Catarina, Brasil',
+  siteUrl: 'https://brunamarchi.github.io/bmarchi/',
   contact: {
-    email: '[CONTEÚDO A CONFIRMAR]',
-    linkedin: '[CONTEÚDO A CONFIRMAR]',
-    behance: '[CONTEÚDO A CONFIRMAR]',
+    // E-mail que aparece em "Dados de contato" do LinkedIn dela (lido em 2026-09-17).
+    email: 'luiza.marchi@gmail.com',
+    linkedin: 'https://www.linkedin.com/in/bruna-marchi-91300232/',
+    behance: 'https://www.behance.net/brunamarchi_br',
+    github: 'https://github.com/brunamarchi',
   },
 };
+
+/** Exibe uma URL sem protocolo nem barra final: "behance.net/brunamarchi_br". */
+export function prettyUrl(url: string): string {
+  return url.replace(/^https?:\/\/(www\.)?/, '').replace(/\/$/, '');
+}

@@ -7,10 +7,22 @@ const dictionaries: Record<Locale, Dictionary> = { pt, en };
 
 const STORAGE_KEY = 'bm-locale';
 
+// Robôs de busca e de prévia de link (Google, LinkedIn, WhatsApp...) costumam
+// anunciar navegador em inglês. Sem esta regra o Google indexaria a versão EN
+// na URL principal, e quem busca em português não acharia o site.
+const BOT_UA = /bot|crawl|spider|slurp|facebookexternalhit|linkedin|whatsapp|embedly|preview/i;
+
 function detectInitialLocale(): Locale {
   if (typeof window === 'undefined') return 'pt';
-  const stored = window.localStorage.getItem(STORAGE_KEY);
-  if (stored === 'pt' || stored === 'en') return stored;
+  const param = new URLSearchParams(window.location.search).get('lang');
+  if (param === 'pt' || param === 'en') return param;
+  if (BOT_UA.test(window.navigator.userAgent)) return 'pt';
+  try {
+    const stored = window.localStorage.getItem(STORAGE_KEY);
+    if (stored === 'pt' || stored === 'en') return stored;
+  } catch {
+    // localStorage bloqueado (modo privado): segue para o idioma do navegador.
+  }
   const nav = window.navigator.language?.toLowerCase() ?? '';
   return nav.startsWith('pt') ? 'pt' : 'en';
 }

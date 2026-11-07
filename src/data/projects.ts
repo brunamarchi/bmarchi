@@ -1,7 +1,8 @@
 // Camada de dados — projetos.
-// Baseado em PROJECT_DATA_TEMPLATE.ts e CONTENT_BASE.md.
-// Não inventar clientes, datas, cargos, números ou resultados.
-// Onde faltar confirmação, usar '[CONTEÚDO A CONFIRMAR]' / '[CONTENT TO CONFIRM]'.
+// Baseado em PROJECT_DATA_TEMPLATE.ts, CONTENT_BASE.md e na Experiência do
+// LinkedIn dela (lida em 2026-09-17).
+// Não inventar clientes, datas, cargos, números ou resultados. Ano não
+// confirmado fica sem campo `year` (o site simplesmente não mostra).
 
 import sustentabilidadeEurekaCover from '../assets/projects/sustentabilidade-eureka/cover.jpg';
 import comecandoAlbertinaCover from '../assets/projects/comecando-albertina/cover.png';
@@ -11,6 +12,7 @@ import depoisDoTremorCover from '../assets/projects/depois-do-tremor/cover.png';
 import poliedroCover from '../assets/projects/poliedro/cover.jpg';
 import josaparCover from '../assets/projects/josapar-tio-joao/cover.jpg';
 import explorumCover from '../assets/projects/explorum/cover.jpg';
+import shellTeamCover from '../assets/projects/shell-team/cover.jpg';
 import yoyoSecreto from '../assets/projects/yoyo-books/cover-secreto.jpg';
 import yoyoGalinhas from '../assets/projects/yoyo-books/cover-galinhas.jpg';
 import yoyoNaFazenda from '../assets/projects/yoyo-books/cover-na-fazenda.jpg';
@@ -18,23 +20,19 @@ import yoyoAbaGalinha from '../assets/projects/yoyo-books/cover-aba-galinha.jpg'
 import yoyoAbaUrso from '../assets/projects/yoyo-books/cover-aba-urso.jpg';
 import yoyoResolva from '../assets/projects/yoyo-books/cover-resolva.jpg';
 
-export type ProjectCategory =
-  | 'pnld'
-  | 'education'
-  | 'assessment'
-  | 'children'
-  | 'institutional'
-  | 'commercial'
-  | 'digital'
-  | 'magazine'
-  | 'literary';
+/** Segmentos usados no filtro de "Trabalhos" — o que um recrutador procura. */
+export type ProjectSegment = 'education' | 'books' | 'institutional' | 'digital';
+
+export const segments: ProjectSegment[] = ['education', 'books', 'institutional'];
 
 export interface ProjectAsset {
   src: string;
   alt: string;
-  type: 'cover' | 'spread' | 'detail' | 'process' | 'photo';
+  type: 'cover' | 'spread' | 'detail' | 'process' | 'photo' | 'screen';
   caption?: string;
 }
+
+type Bilingual = { pt: string; en: string };
 
 export interface PortfolioProject {
   id: string;
@@ -42,16 +40,15 @@ export interface PortfolioProject {
   client?: string;
   partner?: string;
   year?: string;
-  category: ProjectCategory[];
-  role: string[];
+  segment: ProjectSegment;
+  /** Tipo de peça, curto e buscável: "Livros didáticos · pré-vestibular". */
+  kind: Bilingual;
+  role: Bilingual;
   tools?: string[];
-  summary?: {
-    pt: string;
-    en: string;
-  };
-  scope?: string;
+  summary: Bilingual;
+  link?: string;
+  /** false = experiência real, mas sem imagem publicável (contrato/embargo). */
   publishable: boolean;
-  featured: boolean;
   assets: ProjectAsset[];
 }
 
@@ -60,17 +57,16 @@ export const projects: PortfolioProject[] = [
     id: 'poliedro',
     title: 'Poliedro Educação',
     client: 'Poliedro Educação',
-    year: '2024 — atual',
-    category: ['education', 'assessment'],
-    role: ['Design editorial', 'Diagramação'],
-    tools: ['Adobe InDesign', 'WoodWing'],
+    year: '2024 — 2026',
+    segment: 'education',
+    kind: { pt: 'Livros didáticos · pré-vestibular', en: 'Textbooks · exam prep' },
+    role: { pt: 'Edição de arte e diagramação', en: 'Art editing and layout' },
+    tools: ['InDesign', 'WoodWing', 'MathType', 'Mathtools'],
     summary: {
-      pt: 'Materiais para ENEM, ITA, UERJ, EPCAR, Colégio Naval, ESPCEX, OCM, cadernos, gabaritos comentados, apostilas e coletâneas de vestibular. Atuação PJ/freelance contínua, com fluxo em Asana e WoodWing DAM.',
-      en: 'Materials for ENEM, ITA, UERJ, EPCAR, Colégio Naval, ESPCEX, OCM, workbooks, annotated answer keys, course packs and entrance-exam compilations. Ongoing freelance work, with workflow in Asana and WoodWing DAM.',
+      pt: 'Cadernos, apostilas, gabaritos comentados e coletâneas para ENEM, ITA, UERJ, EPCAR, Colégio Naval e ESPCEX. Fluxo de arte em WoodWing, acompanhamento de colaboradores externos e fórmulas de exatas em MathType.',
+      en: 'Workbooks, course packs, annotated answer keys and compilations for ENEM, ITA, UERJ, EPCAR, Colégio Naval and ESPCEX. Art workflow in WoodWing, external contributors, and STEM formulas in MathType.',
     },
-    scope: 'Precisão, escala, consistência e prazo',
     publishable: true,
-    featured: true,
     assets: [
       { src: poliedroCover, alt: 'Cadernos Octa Mais e revisões Poliedro, Ensino Médio e Pré-Vestibular', type: 'cover' },
     ],
@@ -80,152 +76,118 @@ export const projects: PortfolioProject[] = [
     title: 'Yoyo Books',
     client: 'Yoyo Books',
     year: '2025',
-    category: ['children'],
-    role: ['Diagramação'],
+    segment: 'books',
+    kind: { pt: 'Livros infantis · livro-brinquedo', en: 'Children’s books · novelty' },
+    role: { pt: 'Diagramação', en: 'Layout' },
     summary: {
-      pt: 'Coleções de livros infantis.',
-      en: 'Children’s book collections.',
+      pt: 'Coleções infantis para o Brasil: livros de abas, toque e sinta, com quebra-cabeça de madeira, caneta de tinta invisível e “resolva, apague e refaça”.',
+      en: 'Children’s collections for Brazil: lift-the-flap, touch-and-feel, wooden-puzzle, invisible-ink pen and wipe-clean books.',
     },
     publishable: true,
-    featured: true,
     assets: [
+      { src: yoyoNaFazenda, alt: '"Na Fazenda", livro toque e sinta com quebra-cabeça de madeira', type: 'cover' },
       { src: yoyoSecreto, alt: '"Minha Caneta Espiã" e "Minha Caneta Secreta", livros com caneta de tinta invisível', type: 'cover' },
       { src: yoyoGalinhas, alt: '"Galinha e seus amigos", primeiro livro e quebra-cabeça de madeira', type: 'cover' },
-      { src: yoyoNaFazenda, alt: '"Na Fazenda", livro toque e sinta com quebra-cabeça de madeira', type: 'cover' },
       { src: yoyoAbaGalinha, alt: '"Levante a aba e descubra — Fazenda", exemplar impresso', type: 'photo' },
       { src: yoyoAbaUrso, alt: 'Livro de abas "Levante a aba e descubra", exemplar impresso', type: 'photo' },
       { src: yoyoResolva, alt: '"Resolva, apague e refaça" — Adição e subtração, e Tabuada', type: 'cover' },
     ],
   },
   {
-    id: 'ingles-mackenzie',
-    title: 'Coleção Inglês Mackenzie',
-    partner: 'Lotus Estúdio',
-    year: 'jul/2025',
-    category: ['education'],
-    role: ['Diagramação'],
+    id: 'comecando-albertina',
+    title: 'Começando Albertina',
+    client: 'Editacuja',
+    segment: 'books',
+    kind: { pt: 'Livro · capa, caixa e miolo', en: 'Book · cover, slipcase, interior' },
+    role: { pt: 'Projeto gráfico completo', en: 'Full graphic design' },
     summary: {
-      pt: 'Diagramação de coleção didática de inglês.',
-      en: 'Layout of an English-language teaching collection.',
+      pt: 'Capa, caixa e abertura do livro de Deise Abreu Pacheco (“nossa vida no armário nos anos 90”), com conceito visual de fita cassete.',
+      en: 'Cover, slipcase and opening spread for Deise Abreu Pacheco’s book, built around a cassette-tape concept.',
     },
     publishable: true,
-    featured: false,
-    assets: [],
+    assets: [
+      { src: comecandoAlbertinaCover, alt: 'Capa, caixa e contracapa de "Começando Albertina", editora Editacuja', type: 'cover' },
+    ],
   },
   {
     id: 'explorum',
     title: 'Explorum — Educação Digital',
     client: 'Explorum',
     year: '2026',
-    category: ['digital', 'education'],
-    role: ['Diagramação de guias digitais'],
+    segment: 'education',
+    kind: { pt: 'Guias digitais · educação', en: 'Digital guides · education' },
+    role: { pt: 'Diagramação', en: 'Layout' },
     summary: {
-      pt: 'Cliente recorrente. Projeto recente: guia sobre IA na Educação (2026). Diagramação de guias digitais.',
-      en: 'Recurring client. Recent project: a guide on AI in Education (2026). Layout of digital guides.',
+      pt: 'Cliente recorrente. Guias digitais de educação — o mais recente sobre IA na Educação (2026).',
+      en: 'Recurring client. Digital education guides — most recently on AI in Education (2026).',
     },
     publishable: true,
-    featured: false,
     assets: [
       { src: explorumCover, alt: 'Capas da Coleção Explorum, Livro do Aluno, Gaudí Editorial', type: 'cover' },
     ],
   },
   {
-    id: 'mentalidades-matematicas',
-    title: 'Mentalidades Matemáticas',
-    client: 'Mentalidades Matemáticas',
-    year: '2024 — 2025',
-    category: ['institutional'],
-    role: ['Diagramação de relatório institucional/anual'],
+    id: 'comodines-transmedia',
+    title: 'Los Comodines de Transmedia',
+    client: 'Editacuja',
+    partner: 'MinTIC / Proexport Colômbia',
+    segment: 'books',
+    kind: { pt: 'Kit editorial · livro + cartas', en: 'Editorial kit · book + cards' },
+    role: { pt: 'Design gráfico', en: 'Graphic design' },
     summary: {
-      pt: 'Relatórios de atividades 2024 e 2025. Cliente recorrente.',
-      en: 'Activity reports for 2024 and 2025. Recurring client.',
+      pt: 'Kit em caixa (livro-guia + baralho) sobre transmídia para o mercado editorial, em espanhol, para a Colômbia. Crédito de design gráfico na ficha técnica.',
+      en: 'Boxed kit (guidebook + card deck) on transmedia for the publishing industry, in Spanish, for Colombia. Graphic design credited on the colophon.',
     },
     publishable: true,
-    featured: false,
-    assets: [],
-  },
-  {
-    id: 'josapar-tio-joao',
-    title: 'Josapar / Tio João',
-    client: 'Josapar',
-    year: 'set/2024',
-    category: ['commercial', 'institutional'],
-    role: ['Layout e diagramação de livreto institucional', 'Capa, guardas e contracapa'],
-    summary: {
-      pt: 'Livreto institucional. Atuação comercial fora do setor educacional.',
-      en: 'Institutional booklet. Commercial work outside the education sector.',
-    },
-    publishable: true,
-    featured: false,
     assets: [
-      { src: josaparCover, alt: 'Capa do livreto "Arroz Tio João — para cozinhar e encantar!"', type: 'cover' },
+      { src: comodinesTransmediaCover, alt: 'Caixa e cartas do kit "Los Comodines de Transmedia", com crédito de design gráfico de Bruna Marchi', type: 'cover' },
     ],
   },
   {
     id: 'sustentabilidade-eureka',
     title: 'Sustentabilidade — Livro do Educador',
     client: 'Grupo Eureka',
-    year: '[CONTEÚDO A CONFIRMAR]',
-    category: ['education', 'children'],
-    role: ['Design de capa'],
+    segment: 'education',
+    kind: { pt: 'Capas · coleção didática', en: 'Covers · textbook series' },
+    role: { pt: 'Design de capa', en: 'Cover design' },
     summary: {
-      pt: 'Capas para coleção de 3 volumes (Educação Infantil, 1º-2º ano e 3º-5º ano do Ensino Fundamental). Autoras Juliana Cuoco Badari e Luciana Moreira Martins.',
-      en: 'Covers for a 3-volume collection (Early Childhood, Elementary grades 1-2 and 3-5). Authors Juliana Cuoco Badari and Luciana Moreira Martins.',
+      pt: 'Capas da coleção em 3 volumes: Educação Infantil, 1º–2º e 3º–5º ano do Fundamental.',
+      en: 'Covers for a 3-volume series: early childhood, grades 1–2 and 3–5.',
     },
     publishable: true,
-    featured: false,
     assets: [
       { src: sustentabilidadeEurekaCover, alt: 'Capas da coleção Sustentabilidade, Grupo Eureka, volumes 1 a 3', type: 'cover' },
     ],
   },
   {
-    id: 'comecando-albertina',
-    title: 'Começando Albertina — nossa vida no armário nos anos 90',
-    client: 'Editacuja',
-    year: '[CONTEÚDO A CONFIRMAR]',
-    category: ['literary', 'commercial'],
-    role: ['Design de capa e embalagem'],
+    id: 'josapar-tio-joao',
+    title: 'Arroz Tio João',
+    client: 'Josapar',
+    year: '2024',
+    segment: 'institutional',
+    kind: { pt: 'Livreto de marca · receitas', en: 'Brand booklet · recipes' },
+    role: { pt: 'Capa, guardas e diagramação', en: 'Cover, endpapers and layout' },
     summary: {
-      pt: 'Projeto gráfico completo (capa, caixa e miolo de abertura) do livro de Deise Abreu Pacheco, com conceito visual de fita cassete.',
-      en: 'Full graphic design (cover, slipcase and opening spread) for Deise Abreu Pacheco’s book, built around a cassette-tape visual concept.',
+      pt: 'Livreto institucional “para cozinhar e encantar!” para a marca Tio João — design editorial a serviço de uma marca de consumo.',
+      en: 'Institutional booklet for the Tio João rice brand — editorial design in service of a consumer brand.',
     },
     publishable: true,
-    featured: false,
     assets: [
-      { src: comecandoAlbertinaCover, alt: 'Capa, caixa e contracapa de "Começando Albertina", editora Editacuja', type: 'cover' },
-    ],
-  },
-  {
-    id: 'comodines-transmedia',
-    title: 'Los Comodines de Transmedia (TME)',
-    client: 'Editacuja',
-    partner: 'MinTIC / Proexport Colômbia',
-    year: '[CONTEÚDO A CONFIRMAR]',
-    category: ['digital', 'literary'],
-    role: ['Design gráfico'],
-    summary: {
-      pt: 'Kit educativo em caixa (livro-guia + cartas) sobre transmídia para o mercado editorial. Crédito de "Design gráfico: Bruna Marchi" na ficha técnica da peça.',
-      en: 'Boxed educational kit (guidebook + card deck) on transmedia for the publishing industry. Credited "Graphic design: Bruna Marchi" on the piece’s colophon.',
-    },
-    publishable: true,
-    featured: false,
-    assets: [
-      { src: comodinesTransmediaCover, alt: 'Caixa e cartas do kit "Los Comodines de Transmedia", com crédito de design gráfico de Bruna Marchi', type: 'cover' },
+      { src: josaparCover, alt: 'Capa do livreto "Arroz Tio João — para cozinhar e encantar!"', type: 'cover' },
     ],
   },
   {
     id: 'poemas-miudinhos',
-    title: 'Poemas Miudinhos — para brincar e ritmar',
+    title: 'Poemas Miudinhos',
     client: 'Caramelo',
-    year: '[CONTEÚDO A CONFIRMAR]',
-    category: ['children', 'literary'],
-    role: ['Design de capa'],
+    segment: 'books',
+    kind: { pt: 'Capa · livro infantil', en: 'Cover · children’s book' },
+    role: { pt: 'Design de capa', en: 'Cover design' },
     summary: {
-      pt: 'Capa de livro infantil de poemas, texto de Neusa Sorrenti e ilustrações de Gabriela Gil.',
-      en: 'Cover for a children’s poetry book, written by Neusa Sorrenti with illustrations by Gabriela Gil.',
+      pt: 'Poemas de Neusa Sorrenti, ilustrações de Gabriela Gil.',
+      en: 'Poems by Neusa Sorrenti, illustrations by Gabriela Gil.',
     },
     publishable: true,
-    featured: false,
     assets: [
       { src: poemasMiudinhosCover, alt: 'Capa de "Poemas Miudinhos — para brincar e ritmar", editora Caramelo', type: 'cover' },
     ],
@@ -233,35 +195,97 @@ export const projects: PortfolioProject[] = [
   {
     id: 'depois-do-tremor',
     title: 'Depois do Tremor',
-    client: '[CONTEÚDO A CONFIRMAR]',
-    year: '[CONTEÚDO A CONFIRMAR]',
-    category: ['literary'],
-    role: ['Design de capa'],
+    segment: 'books',
+    kind: { pt: 'Capa · literatura', en: 'Cover · literary' },
+    role: { pt: 'Design de capa', en: 'Cover design' },
     summary: {
-      pt: 'Capa do livro de Jean Portante, tradução de Maria João Cantinho.',
-      en: 'Cover for Jean Portante’s book, translated by Maria João Cantinho.',
+      pt: 'Jean Portante, tradução de Maria João Cantinho.',
+      en: 'Jean Portante, translated by Maria João Cantinho.',
     },
     publishable: true,
-    featured: false,
     assets: [
       { src: depoisDoTremorCover, alt: 'Capa de "Depois do Tremor", de Jean Portante', type: 'cover' },
     ],
   },
+
+  // --- Sem imagem publicável: aparecem como lista compacta -----------------
   {
     id: 'editora-do-brasil',
     title: 'Editora do Brasil',
     client: 'Editora do Brasil',
-    year: '2024 — 2026',
-    category: ['pnld', 'education'],
-    role: ['Arte PNLD'],
+    year: '2023 — 2026',
+    segment: 'education',
+    kind: { pt: 'Livros didáticos · PNLD', en: 'Textbooks · PNLD' },
+    role: { pt: 'Edição de arte', en: 'Art editing' },
+    tools: ['InDesign', 'WoodWing'],
     summary: {
-      pt: 'Contratos PJ recorrentes em 2024, 2025 e 2026. Experiência profissional; material visual não publicável por restrição contratual.',
-      en: 'Recurring freelance contracts in 2024, 2025 and 2026. Professional experience; visual material cannot be published due to contract restrictions.',
+      pt: 'Edição de arte de livros para o PNLD: fluxo de arte em WoodWing, ilustradores e estúdios externos, projeto gráfico e especificações do edital. Material sob contrato — sem imagens.',
+      en: 'Art editing of PNLD textbooks: WoodWing art workflow, external illustrators and studios, design system and public-tender specs. Under contract — no images.',
     },
     publishable: false,
-    featured: false,
+    assets: [],
+  },
+  {
+    id: 'ingles-mackenzie',
+    title: 'Coleção Inglês Mackenzie',
+    partner: 'Lotus Estúdio',
+    year: '2025',
+    segment: 'education',
+    kind: { pt: 'Coleção didática · inglês', en: 'Textbook series · English' },
+    role: { pt: 'Diagramação', en: 'Layout' },
+    summary: { pt: 'Diagramação de coleção didática de inglês.', en: 'Layout of an English-language textbook series.' },
+    publishable: true,
+    assets: [],
+  },
+  {
+    id: 'mentalidades-matematicas',
+    title: 'Mentalidades Matemáticas',
+    client: 'Mentalidades Matemáticas',
+    year: '2024 — 2025',
+    segment: 'institutional',
+    kind: { pt: 'Relatório anual', en: 'Annual report' },
+    role: { pt: 'Diagramação', en: 'Layout' },
+    summary: { pt: 'Relatórios de atividades 2024 e 2025. Cliente recorrente.', en: 'Activity reports for 2024 and 2025. Recurring client.' },
+    publishable: true,
     assets: [],
   },
 ];
 
-export const featuredProjects = projects.filter((p) => p.featured);
+/** Projetos digitais (sites e interfaces) — repositórios em github.com/brunamarchi. */
+export const digitalProjects: PortfolioProject[] = [
+  {
+    id: 'shell-team',
+    title: 'Shell Team Jiu-Jitsu',
+    client: 'Shell Team · Florianópolis',
+    year: '2026',
+    segment: 'digital',
+    kind: { pt: 'Site · academia e livro infantil', en: 'Website · gym and children’s book' },
+    role: { pt: 'Design e construção do site', en: 'Site design and build' },
+    tools: ['HTML', 'CSS', 'JavaScript', 'GitHub Pages'],
+    summary: {
+      pt: 'Site da academia com aulas, grade de horários interativa, área Shell Kids (jogos e desenhos para colorir) e página de pré-venda do livro O Cinturão de Ouro.',
+      en: 'Gym website with classes, an interactive timetable, a Shell Kids area (games and colouring pages) and a pre-sale page for the book O Cinturão de Ouro.',
+    },
+    link: 'https://brunamarchi.github.io/shell-team/',
+    publishable: true,
+    assets: [
+      { src: shellTeamCover, alt: 'Página inicial do site Shell Team, área Kids: ilustração da mestra de kimono e título "Cair, levantar e tentar de novo"', type: 'screen' },
+    ],
+  },
+  {
+    id: 'primepork',
+    title: 'Prime Pork',
+    client: 'Prime Pork',
+    year: '2026',
+    segment: 'digital',
+    kind: { pt: 'App web · controle de estoque', en: 'Web app · inventory' },
+    role: { pt: 'Design de interface e construção', en: 'Interface design and build' },
+    tools: ['React', 'Tailwind', 'Supabase'],
+    summary: {
+      pt: 'Sistema mobile-first para um pequeno produtor: estoque, compras de matéria-prima, pedidos por cliente e mapa de clientes. Uso interno, com login.',
+      en: 'Mobile-first system for a small food producer: stock, raw-material purchases, orders per client and a client map. Internal use, behind login.',
+    },
+    publishable: true,
+    assets: [],
+  },
+];

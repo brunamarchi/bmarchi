@@ -6,21 +6,23 @@
   margin-bottom: var(--space-7);
 }
 
-.words {
+.clients {
+  list-style: none;
+  margin: 0 0 var(--space-7);
+  padding: 0 0 var(--space-6);
+  border-bottom: var(--border-hairline);
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3) var(--space-6);
-  font-family: var(--font-sans);
+  gap: var(--space-2) var(--space-5);
+  font-family: var(--font-serif);
   font-size: var(--step-h3);
-  color: var(--color-ink-faint);
-  margin-bottom: var(--space-7);
-  padding-bottom: var(--space-6);
-  border-bottom: var(--border-hairline);
+  color: var(--color-ink-soft);
 }
 
 .areasTitle {
   composes: eyebrow from global;
-  margin-bottom: var(--space-4);
+  display: block;
+  margin: 0 0 var(--space-4);
 }
 
 .areas {

@@ -1,6 +1,9 @@
 import { useI18n } from '../../i18n';
-import { languages, tools, expertiseAreas, profile } from '../../data/profile';
+import { languages, tools, expertiseAreas } from '../../data/profile';
 import styles from './About.module.css';
+
+// Sem foto por enquanto: o bloco tracejado "Fotografia a confirmar" saiu do ar.
+// Quando a foto chegar, volte a usar a grade de 2 colunas (.grid) com <img>.
 
 export function About() {
   const { t } = useI18n();
@@ -15,54 +18,47 @@ export function About() {
           {t.about.title}
         </h2>
 
-        <div className={styles.grid}>
-          <div className={styles.photo}>{t.about.photoPlaceholder}</div>
+        <p className={styles.bio}>{t.about.bio}</p>
 
-          <div>
-            <p className={styles.bio}>{t.about.bio}</p>
+        <div className={styles.metaGrid}>
+          <div className={styles.metaBlock}>
+            <h3 className={styles.metaTitle}>{t.about.expertiseTitle}</h3>
+            <ul className={styles.tagList}>
+              {expertiseAreas.map((key) => (
+                <li className={styles.tag} key={key}>
+                  {t.about.expertiseAreas[key]}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            <div className={styles.metaGrid}>
-              <div className={styles.metaBlock}>
-                <span className={styles.metaTitle}>{t.about.expertiseTitle}</span>
-                <div className={styles.tagList}>
-                  {expertiseAreas.map((key) => (
-                    <span className={styles.tag} key={key}>
-                      {t.about.expertiseAreas[key]}
-                    </span>
-                  ))}
-                </div>
-              </div>
+          <div className={styles.metaBlock}>
+            <h3 className={styles.metaTitle}>{t.about.toolsTitle}</h3>
+            <ul className={styles.tagList}>
+              {tools.map((tool) => (
+                <li className={styles.tag} key={tool}>
+                  {tool}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              <div className={styles.metaBlock}>
-                <span className={styles.metaTitle}>{t.about.toolsTitle}</span>
-                <div className={styles.tagList}>
-                  {tools.map((tool) => (
-                    <span className={styles.tag} key={tool}>
-                      {tool}
-                    </span>
-                  ))}
-                </div>
-              </div>
+          <div className={styles.metaBlock}>
+            <h3 className={styles.metaTitle}>{t.about.languagesTitle}</h3>
+            <ul className={styles.langList}>
+              {languages.map((lang) => (
+                <li key={lang.key}>
+                  {t.about.languageNames[lang.key] ?? lang.key}{' '}
+                  <span className={styles.langLevel}>— {t.about.languageLevels[lang.level]}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              <div className={styles.metaBlock}>
-                <span className={styles.metaTitle}>{t.about.languagesTitle}</span>
-                <ul className={styles.langList}>
-                  {languages.map((lang) => (
-                    <li key={lang.key}>
-                      {t.about.languageNames[lang.key] ?? lang.key}{' '}
-                      <span className={styles.langLevel}>— {t.about.languageLevels[lang.level]}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className={styles.metaBlock}>
-                <span className={styles.metaTitle}>{t.about.locationLabel}</span>
-                <p>{t.about.availability}</p>
-              </div>
-            </div>
-
-            <p className={styles.footerMeta}>{profile.location}</p>
+          <div className={styles.metaBlock}>
+            <h3 className={styles.metaTitle}>{t.about.availabilityTitle}</h3>
+            <p className={styles.availability}>{t.about.availability}</p>
+            <p className={styles.location}>{t.colophon.location}</p>
           </div>
         </div>
       </div>

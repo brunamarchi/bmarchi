@@ -1,6 +1,14 @@
-# Bruna Marchi — Editorial Practice
+# Bruna Marchi — designer editorial e editora de arte
 
-Portfólio editorial digital de Bruna Marchi. React + TypeScript + Vite + GSAP, bilíngue (PT/EN, arquitetura pronta para ES), publicado no GitHub Pages.
+**→ [brunamarchi.github.io/bmarchi](https://brunamarchi.github.io/bmarchi/)** · [LinkedIn](https://www.linkedin.com/in/bruna-marchi-91300232/) · [Behance](https://www.behance.net/brunamarchi_br)
+
+Meu portfólio: livros didáticos (PNLD, ENEM, vestibulares), livros infantis e literários, capas, materiais de marca e sites. Desenhado e construído por mim, com a mesma lógica de grid e hierarquia que uso na página impressa.
+
+*Editorial designer and art editor — textbooks, children’s and literary books, covers, brand publications and websites. Remote from Brazil. Site in Portuguese and English (`?lang=en`).*
+
+---
+
+React + TypeScript + Vite + GSAP, bilíngue (PT/EN, arquitetura pronta para ES), publicado no GitHub Pages.
 
 Conceito: **entre método e expressão**. Fonte de verdade do conteúdo/direção de arte está no pacote `CLAUDE_MASTER_PROMPT.md` / `CONTENT_BASE.md` / `DESIGN_SYSTEM.md` usado para gerar este projeto.
 
@@ -29,7 +37,7 @@ src/
   lib/           # gsap.ts (registro de plugins), gridContext.tsx (estado do grid overlay)
   components/
     layout/      # Header, GridOverlay
-    sections/    # as 12 seções do site map (Cover → Contact)
+    sections/    # Cover, Intro, SelectedWork, Systems, Precision, Digital, About, Contact
 ```
 
 ## Como substituir um placeholder editorial

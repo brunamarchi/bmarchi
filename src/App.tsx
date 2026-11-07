@@ -7,11 +7,7 @@ import { Intro } from './components/sections/Intro';
 import { SelectedWork } from './components/sections/SelectedWork';
 import { Systems } from './components/sections/Systems';
 import { Precision } from './components/sections/Precision';
-import { Direction } from './components/sections/Direction';
-import { Formats } from './components/sections/Formats';
-import { Process } from './components/sections/Process';
-import { OutsideMargin } from './components/sections/OutsideMargin';
-import { Trajectory } from './components/sections/Trajectory';
+import { Digital } from './components/sections/Digital';
 import { About } from './components/sections/About';
 import { Contact } from './components/sections/Contact';
 
@@ -40,11 +36,7 @@ function SiteContent() {
         <SelectedWork />
         <Systems />
         <Precision />
-        <Direction />
-        <Formats />
-        <Process />
-        <OutsideMargin />
-        <Trajectory />
+        <Digital />
         <About />
         <Contact />
       </main>

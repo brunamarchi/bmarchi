@@ -1,3 +1,5 @@
+import type { ProjectSegment } from '../data/projects';
+
 export type Locale = 'pt' | 'en';
 
 export interface Dictionary {
@@ -15,20 +17,23 @@ export interface Dictionary {
     closeLabel: string;
     chapters: { id: string; number: string; label: string }[];
   };
+  header: {
+    role: string;
+  };
   cover: {
-    eyebrowName: string;
-    eyebrowRole: string;
+    role: string;
     titleLine1: string;
     titleLine2: string;
     subtitle: string;
-    scrollCta: string;
+    ctaWork: string;
+    ctaContact: string;
     pageIndicator: string;
   };
   intro: {
     number: string;
     eyebrow: string;
     lead: string;
-    words: string[];
+    clientsTitle: string;
     areasTitle: string;
     areas: { title: string; description: string }[];
   };
@@ -37,9 +42,13 @@ export interface Dictionary {
     chapterLabel: string;
     title: string;
     intro: string;
-    viewCase: string;
-    notPublishable: string;
-    caseComingSoon: string;
+    filterLabel: string;
+    filterAll: string;
+    segments: Record<Exclude<ProjectSegment, 'digital'>, string>;
+    alsoTitle: string;
+    noImages: string;
+    roleLabel: string;
+    toolsLabel: string;
   };
   systems: {
     number: string;
@@ -57,56 +66,24 @@ export interface Dictionary {
     exams: string[];
     narrative: string[];
   };
-  direction: {
+  digital: {
     number: string;
     chapterLabel: string;
     title: string;
-    quote1: string;
-    quote2: string;
-    roles: string[];
-  };
-  formats: {
-    number: string;
-    chapterLabel: string;
-    title: string;
-    quote: string;
-    formats: string[];
-  };
-  process: {
-    number: string;
-    chapterLabel: string;
-    title: string;
-    quote: string;
-    steps: string[];
-    note: string;
-  };
-  outsideMargin: {
-    number: string;
-    chapterLabel: string;
-    title: string;
-    quote: string;
-    lead: string;
-    comingSoon: string;
-  };
-  trajectory: {
-    number: string;
-    chapterLabel: string;
-    title: string;
-    quote: string;
-    priorHistoryTitle: string;
-    priorHistoryNote: string;
-    entryPlaceholder: string;
+    intro: string;
+    visit: string;
+    privateApp: string;
+    githubCta: string;
   };
   about: {
     number: string;
     chapterLabel: string;
     title: string;
     bio: string;
-    photoPlaceholder: string;
     expertiseTitle: string;
     toolsTitle: string;
     languagesTitle: string;
-    locationLabel: string;
+    availabilityTitle: string;
     availability: string;
     languageLevels: Record<'native' | 'fluent' | 'some', string>;
     languageNames: Record<string, string>;
@@ -115,11 +92,12 @@ export interface Dictionary {
   contact: {
     number: string;
     chapterLabel: string;
-    title: string;
     quote: string;
+    lead: string;
     emailLabel: string;
     linkedinLabel: string;
     behanceLabel: string;
+    githubLabel: string;
   };
   colophon: {
     rights: string;
