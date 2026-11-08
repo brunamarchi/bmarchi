@@ -1,15 +1,16 @@
 import { I18nProvider, useI18n } from './i18n';
 import { GridProvider } from './lib/gridContext';
+import { LightboxProvider } from './lib/lightbox';
 import { Header } from './components/layout/Header';
 import { GridOverlay } from './components/layout/GridOverlay';
 import { Cover } from './components/sections/Cover';
 import { Intro } from './components/sections/Intro';
-import { SelectedWork } from './components/sections/SelectedWork';
-import { Systems } from './components/sections/Systems';
-import { Precision } from './components/sections/Precision';
-import { Digital } from './components/sections/Digital';
+import { CaseStudies } from './components/sections/CaseStudies';
+import { Archive } from './components/sections/Archive';
 import { About } from './components/sections/About';
 import { Contact } from './components/sections/Contact';
+import { Mural } from './components/mural/Mural';
+import { Herbario } from './components/herbario/Herbario';
 
 function DocumentMeta() {
   const { t } = useI18n();
@@ -33,10 +34,8 @@ function SiteContent() {
       <main id="main-content">
         <Cover />
         <Intro />
-        <SelectedWork />
-        <Systems />
-        <Precision />
-        <Digital />
+        <CaseStudies />
+        <Archive />
         <About />
         <Contact />
       </main>
@@ -44,11 +43,13 @@ function SiteContent() {
   );
 }
 
-function App() {
+function App({ variant = 'default' }: { variant?: 'default' | 'mural' | 'herbario' }) {
   return (
     <I18nProvider>
       <GridProvider>
-        <SiteContent />
+        <LightboxProvider>
+          {variant === 'mural' ? <Mural /> : variant === 'herbario' ? <Herbario /> : <SiteContent />}
+        </LightboxProvider>
       </GridProvider>
     </I18nProvider>
   );

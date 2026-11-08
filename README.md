@@ -37,7 +37,7 @@ src/
   lib/           # gsap.ts (registro de plugins), gridContext.tsx (estado do grid overlay)
   components/
     layout/      # Header, GridOverlay
-    sections/    # Cover, Intro, SelectedWork, Systems, Precision, Digital, About, Contact
+    sections/    # Cover, Intro, CaseStudies, Archive, About, Contact
 ```
 
 ## Como substituir um placeholder editorial

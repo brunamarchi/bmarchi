@@ -1,0 +1,1129 @@
+/*
+ * Versão pôster — cartaz editorial com grade de construção, réguas e mira.
+ * Fontes: Bodoni Moda (nome e títulos), DM Mono (marcações), DM Sans (texto).
+ * Cores tiradas da foto: fundo quase preto, papel claro, âmbar da luminária.
+ *
+ * Hierarquia da capa: 1) nome  2) o que ela faz  3) ações (ver projetos / fale comigo)
+ * 4) links de apoio (LinkedIn, Behance, contato). Marcações ficam ao fundo, discretas.
+ */
+
+:root {
+  --ps-bg: #0d0c0b;
+  --ps-bg-2: #15130f;
+  --ps-paper: #ece8e1;
+  --ps-soft: #b9b2a6;
+  --ps-line: rgba(236, 232, 225, 0.3);
+  --ps-mark-line: rgba(236, 232, 225, 0.14);
+  --ps-amber: #f0a04b;
+
+  --ps-display: 'Bodoni Moda', 'Didot', Georgia, serif;
+  --ps-mono: 'DM Mono', ui-monospace, Menlo, monospace;
+  --ps-sans: 'DM Sans', -apple-system, 'Segoe UI', sans-serif;
+  --ps-gutter: clamp(16px, 5vw, 72px);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--ps-bg);
+}
+
+body {
+  margin: 0;
+  background: var(--ps-bg);
+  color: var(--ps-paper);
+  font-family: var(--ps-sans);
+  font-size: 17px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+p,
+ul,
+dl,
+dd {
+  margin: 0;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.ps a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.ps a:hover,
+.ps button:hover {
+  color: var(--ps-amber);
+}
+
+.ps :focus-visible {
+  outline: 2px solid var(--ps-amber);
+  outline-offset: 3px;
+}
+
+.ps .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.ps-mono {
+  font-family: var(--ps-mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* =================== PRIMEIRA DOBRA =================== */
+/* a foto inteira (sem corte nem zoom), centralizada; as laterais usam a
+   própria foto desfocada. O Sobre é um cartão sobre o notebook. */
+.ps-spread {
+  --sx: 0.5;
+  --sy: 0.42;
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--ps-bg);
+}
+
+.ps-spread-blur {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(48px) brightness(0.32) saturate(1.1);
+  transform: scale(1.15);
+  z-index: -1;
+}
+
+.ps-stage {
+  position: relative;
+  width: min(100svh, 100vw);
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.6);
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .ps-spread {
+    min-height: 0;
+  }
+
+  .ps-stage {
+    width: 100vw;
+  }
+}
+
+.ps-frame {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+}
+
+/* só um leve escurecimento no topo, para a linha de texto ficar legível */
+.ps-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom, rgba(13, 12, 11, 0.72) 0%, rgba(13, 12, 11, 0.35) 18%, rgba(13, 12, 11, 0) 30%),
+    linear-gradient(to top, rgba(13, 12, 11, 0.6) 0%, rgba(13, 12, 11, 0) 14%);
+}
+
+.ps-photo,
+.ps-cutout {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ps-photo {
+  z-index: 1;
+  filter: saturate(0.92);
+}
+
+.ps-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  fill: none;
+  stroke: var(--ps-mark-line);
+  stroke-width: 1;
+  transform: translate(calc((var(--sx) - 0.5) * -10px), calc((var(--sy) - 0.5) * -10px));
+}
+
+.ps-grid * {
+  vector-effect: non-scaling-stroke;
+}
+
+.ps-name {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 19%;
+  z-index: 3;
+  text-align: center;
+  font-family: var(--ps-display);
+  font-weight: 400;
+  font-size: 25cqw;
+  line-height: 0.82;
+  letter-spacing: -0.02em;
+  color: var(--ps-paper);
+  pointer-events: none;
+}
+
+.ps-cutout {
+  z-index: 4;
+  pointer-events: none;
+}
+
+.ps-spaced {
+  position: absolute;
+  top: 15%;
+  left: 9%;
+  right: 56%;
+  z-index: 6;
+  display: flex;
+  justify-content: space-between;
+  font-family: var(--ps-mono);
+  font-weight: 300;
+  font-size: clamp(13px, 2.2cqw, 24px);
+}
+
+.ps-top {
+  position: absolute;
+  bottom: 3.5%;
+  left: 7%;
+  right: 7%;
+  z-index: 7;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: var(--ps-mono);
+  font-size: clamp(11px, 1.5cqw, 13px);
+}
+
+.ps-arrow {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background: rgba(236, 232, 225, 0.5);
+}
+
+.ps-arrow::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -3px;
+  border: solid rgba(236, 232, 225, 0.7);
+  border-width: 0 1px 1px 0;
+  padding: 3px;
+  transform: rotate(-45deg);
+}
+
+.ps-top a {
+  text-decoration: underline;
+  text-decoration-color: rgba(240, 160, 75, 0.8);
+  text-underline-offset: 0.35em;
+}
+
+/* réguas laterais — discretas */
+.ps-ruler {
+  position: absolute;
+  z-index: 6;
+  top: 16%;
+  bottom: 16%;
+  width: 20px;
+  overflow: hidden;
+  color: var(--ps-paper);
+  opacity: 0.26;
+  pointer-events: none;
+}
+
+.ps-ruler-left {
+  left: 2.6%;
+}
+
+.ps-ruler-right {
+  right: 2.6%;
+}
+
+.ps-ruler-strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1000px;
+  height: 4100px;
+  transform: translateY(calc((var(--sy) - 0.5) * -200px));
+  background-image:
+    linear-gradient(to bottom, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px),
+    linear-gradient(to bottom, currentColor 1px, transparent 1px);
+  background-size:
+    5px 10px,
+    9px 50px,
+    15px 100px;
+  background-repeat: repeat-y;
+}
+
+.ps-ruler-left .ps-ruler-strip {
+  background-position: left top, left top, left top;
+}
+
+.ps-ruler-right .ps-ruler-strip {
+  background-position: right top, right top, right top;
+}
+
+.ps-ruler-num {
+  position: absolute;
+  top: calc(var(--i) * 100px + 3px);
+  font-family: var(--ps-mono);
+  font-size: 8px;
+  line-height: 1;
+}
+
+.ps-ruler-left .ps-ruler-num {
+  left: 10px;
+}
+
+.ps-ruler-right .ps-ruler-num {
+  right: 10px;
+}
+
+.ps-ruler-marker {
+  position: absolute;
+  top: calc(var(--sy) * 100% - 4px);
+  width: 0;
+  height: 0;
+  border: 4px solid transparent;
+}
+
+.ps-ruler-left .ps-ruler-marker {
+  left: 0;
+  border-left-color: var(--ps-amber);
+}
+
+.ps-ruler-right .ps-ruler-marker {
+  right: 0;
+  border-right-color: var(--ps-amber);
+}
+
+/* mira — sutil */
+.ps-cross {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.ps-cross-v,
+.ps-cross-h {
+  position: absolute;
+  background: rgba(236, 232, 225, 0.14);
+}
+
+.ps-cross-v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  left: var(--px, 50%);
+}
+
+.ps-cross-h {
+  left: 0;
+  right: 0;
+  height: 1px;
+  top: var(--py, 42%);
+}
+
+.ps-readout {
+  display: none;
+}
+
+.ps-lang {
+  position: absolute;
+  top: max(16px, env(safe-area-inset-top, 0px));
+  right: max(16px, env(safe-area-inset-right, 0px));
+  z-index: 9;
+  min-width: 44px;
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(236, 232, 225, 0.4);
+  border-radius: 999px;
+  font-family: var(--ps-mono);
+  font-size: 12px;
+  background: rgba(13, 12, 11, 0.45);
+}
+
+/* ---------- chamada de capa (estilo revista): texto direto sobre a foto,
+   alinhado acima do "chi" do nome, sem caixa ---------- */
+.ps-coverline {
+  position: absolute;
+  right: 7.5%;
+  bottom: 80.4%;
+  z-index: 7;
+  width: 34%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5cqw;
+  isolation: isolate;
+  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* fundo de leitura: preto a 15% com bordas desfocadas (sem caixa visível) */
+.ps-coverline::before {
+  content: '';
+  position: absolute;
+  inset: -22px -30px;
+  z-index: -1;
+  background: rgba(0, 0, 0, 0.15);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  -webkit-mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+  mask-image: radial-gradient(closest-side, #000 62%, transparent 100%);
+  pointer-events: none;
+}
+
+.ps-coverline-title {
+  font-family: var(--ps-sans);
+  font-weight: 700;
+  font-size: clamp(14px, 2.1cqw, 22px);
+  line-height: 1.1;
+  color: var(--ps-amber);
+}
+
+.ps-coverline-text {
+  font-family: var(--ps-sans);
+  font-size: clamp(12px, 1.6cqw, 17px);
+  line-height: 1.32;
+  color: var(--ps-paper);
+}
+
+.ps .ps-coverline-more {
+  font-family: var(--ps-sans);
+  font-weight: 600;
+  font-size: clamp(12px, 1.5cqw, 16px);
+  color: var(--ps-paper);
+  text-decoration: underline;
+  text-decoration-color: var(--ps-amber);
+  text-underline-offset: 0.3em;
+}
+
+.ps .ps-coverline-more:hover {
+  color: var(--ps-amber);
+}
+
+/* telas pequenas: sem réguas e mira; a chamada vai para o canto de baixo */
+@media (max-width: 899px), (max-aspect-ratio: 1/1) {
+  .ps-top,
+  .ps-ruler,
+  .ps-cross {
+    display: none;
+  }
+
+  .ps-coverline {
+    bottom: 4%;
+    right: 5%;
+    width: 52%;
+    gap: 4px;
+    text-shadow: 0 1px 10px rgba(0, 0, 0, 0.85);
+  }
+}
+
+/* ---------- modal do Saiba mais ---------- */
+.ps-about-dialog {
+  width: min(760px, calc(100vw - 24px));
+}
+
+.ps-about-dialog-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(24px, 4vw, 48px);
+}
+
+.ps-about-dialog-kicker {
+  color: var(--ps-amber);
+}
+
+.ps-about-dialog-text {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ps-about-dialog-text p {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: clamp(16px, 1.3vw, 18px);
+  line-height: 1.65;
+  color: var(--ps-paper);
+}
+
+.ps-about-dialog[open] .ps-about-dialog-inner > * {
+  animation: ps-rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.ps-about-dialog[open] .ps-about-dialog-inner > *:nth-child(n + 3) {
+  animation-delay: 0.1s;
+}
+
+/* =================== SEÇÕES =================== */
+.ps-section {
+  position: relative;
+  padding: clamp(72px, 10vw, 140px) var(--ps-gutter);
+  border-top: 1px solid rgba(236, 232, 225, 0.1);
+}
+
+.ps-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 12px 28px;
+  margin-bottom: 48px;
+}
+
+.ps-head .ps-mono {
+  color: var(--ps-soft);
+}
+
+.ps-h2 {
+  font-family: var(--ps-display);
+  font-weight: 400;
+  font-size: clamp(52px, 8vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+}
+
+.ps-hint {
+  margin-left: auto;
+}
+
+.ps-hint b {
+  color: var(--ps-amber);
+}
+
+/* galeria arrastável */
+.ps-gallery {
+  display: flex;
+  gap: clamp(16px, 2vw, 28px);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: var(--ps-gutter);
+  margin-inline: calc(var(--ps-gutter) * -1);
+  padding: 4px var(--ps-gutter) 24px;
+  cursor: grab;
+  scrollbar-width: thin;
+  scrollbar-color: var(--ps-line) transparent;
+}
+
+.ps-gallery.is-dragging {
+  cursor: grabbing;
+  scroll-snap-type: none;
+  user-select: none;
+}
+
+.ps-card {
+  flex: 0 0 clamp(250px, 26vw, 380px);
+  scroll-snap-align: start;
+}
+
+.ps-card-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  cursor: inherit;
+}
+
+.ps-card-img {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--ps-bg-2);
+}
+
+.ps-card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.ps-card-btn:hover .ps-card-img img {
+  transform: scale(1.04);
+}
+
+.ps-card-ticks {
+  display: none;
+}
+
+.ps-card-meta {
+  display: flex;
+  justify-content: space-between;
+  color: var(--ps-soft);
+}
+
+.ps-card-title {
+  font-family: var(--ps-display);
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.08;
+}
+
+.ps-card-btn:hover .ps-card-title {
+  color: var(--ps-amber);
+}
+
+.ps-card-kind {
+  color: var(--ps-soft);
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+/* sobre */
+.ps-about-grid {
+  display: grid;
+  gap: 48px;
+}
+
+@media (min-width: 960px) {
+  .ps-about-grid {
+    grid-template-columns: 1.6fr 1fr;
+    gap: 96px;
+  }
+}
+
+.ps-about-text {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.ps-lead {
+  font-family: var(--ps-display);
+  font-size: clamp(22px, 2.3vw, 32px);
+  line-height: 1.35;
+  max-width: 36ch;
+}
+
+.ps-services {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 28px 40px;
+}
+
+@media (min-width: 640px) {
+  .ps-services {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.ps-services li {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(236, 232, 225, 0.16);
+}
+
+.ps-services .ps-mono {
+  color: var(--ps-amber);
+}
+
+.ps-services p {
+  color: var(--ps-soft);
+  font-size: 15px;
+}
+
+.ps-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+}
+
+.ps-facts > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(236, 232, 225, 0.16);
+}
+
+.ps-facts .ps-mono {
+  color: var(--ps-soft);
+}
+
+.ps-facts p {
+  font-family: var(--ps-display);
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+/* contato */
+.ps-contact-title {
+  font-family: var(--ps-display);
+  font-weight: 400;
+  font-size: clamp(42px, 7vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  max-width: 14ch;
+}
+
+.ps-email {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 48px;
+}
+
+.ps-email a {
+  font-family: var(--ps-display);
+  font-style: italic;
+  font-size: clamp(26px, 3.4vw, 48px);
+  border-bottom: 1px solid var(--ps-amber);
+  overflow-wrap: anywhere;
+}
+
+.ps-chip {
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--ps-line);
+  border-radius: 999px;
+  font-family: var(--ps-mono);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ps-links {
+  list-style: none;
+  padding: 0;
+  margin-top: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 36px;
+  font-family: var(--ps-mono);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.ps-links a {
+  text-decoration: underline;
+  text-decoration-color: rgba(240, 160, 75, 0.7);
+  text-underline-offset: 0.35em;
+}
+
+.ps-foot {
+  margin-top: 96px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(236, 232, 225, 0.16);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--ps-soft);
+}
+
+/* =================== FICHA DO PROJETO (modal animado) =================== */
+.ps-detail {
+  width: min(1200px, calc(100vw - 24px));
+  max-height: calc(100dvh - 24px);
+  padding: 0;
+  border: 1px solid rgba(236, 232, 225, 0.18);
+  background: var(--ps-bg-2);
+  color: var(--ps-paper);
+  overflow: auto;
+}
+
+.ps-detail::backdrop {
+  background: rgba(5, 5, 4, 0.82);
+  animation: ps-fade 0.3s ease-out;
+}
+
+@keyframes ps-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes ps-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+
+.ps-detail[open] .ps-detail-text > * {
+  animation: ps-rise 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.ps-detail[open] .ps-detail-text > *:nth-child(2) {
+  animation-delay: 0.12s;
+}
+
+.ps-detail[open] .ps-detail-text > *:nth-child(3) {
+  animation-delay: 0.18s;
+}
+
+.ps-detail[open] .ps-detail-text > *:nth-child(n + 4) {
+  animation-delay: 0.24s;
+}
+
+.ps-detail-img {
+  animation: ps-fade 0.35s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ps-detail::backdrop,
+  .ps-detail[open] .ps-detail-text > *,
+  .ps-detail-img {
+    animation: none;
+  }
+}
+
+.ps-detail-inner {
+  position: relative;
+  display: grid;
+}
+
+@media (min-width: 900px) {
+  .ps-detail-inner {
+    grid-template-columns: 1.45fr 1fr;
+    min-height: min(720px, calc(100dvh - 24px));
+  }
+}
+
+.ps-detail-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 2;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--ps-line);
+  border-radius: 999px;
+  background: rgba(13, 12, 11, 0.7);
+}
+
+.ps-detail-media {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: #0a0908;
+  min-width: 0;
+}
+
+.ps-detail-media img {
+  width: 100%;
+  max-height: 68dvh;
+  object-fit: contain;
+  margin: auto;
+}
+
+.ps-detail-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.ps-detail-nav button {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--ps-line);
+  border-radius: 50%;
+}
+
+.ps-detail-text {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: clamp(20px, 3vw, 40px);
+  min-width: 0;
+}
+
+.ps-detail-text > .ps-mono {
+  color: var(--ps-soft);
+  padding-right: 90px;
+}
+
+.ps-detail-title {
+  font-family: var(--ps-display);
+  font-weight: 400;
+  font-size: clamp(34px, 3.6vw, 52px);
+  line-height: 1;
+}
+
+.ps-detail-text dl {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ps-detail-text dt {
+  color: var(--ps-amber);
+  margin-bottom: 4px;
+}
+
+.ps-detail-role {
+  color: var(--ps-soft);
+  text-transform: none;
+  letter-spacing: 0.02em;
+}
+
+.ps-detail-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.ps .ps-btn,
+.ps-detail .ps-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 46px;
+  padding: 0 20px;
+  border-radius: 999px;
+  background: var(--ps-amber);
+  color: #15130f;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.ps-detail .ps-btn:hover {
+  background: #f6b56b;
+  color: #15130f;
+}
+
+.ps-detail .ps-btn-ghost {
+  background: transparent;
+  border: 1px solid var(--ps-line);
+  color: var(--ps-paper);
+}
+
+.ps-detail .ps-btn-ghost:hover {
+  background: transparent;
+  border-color: var(--ps-amber);
+  color: var(--ps-amber);
+}
+
+/* =================== CARROSSEL MEIA-LUA =================== */
+.ps-arc-section {
+  position: relative;
+  padding: clamp(56px, 7vw, 96px) 0 clamp(56px, 8vw, 110px);
+}
+
+.ps-arc-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 24px;
+  padding-inline: var(--ps-gutter);
+  margin-bottom: 18px;
+}
+
+.ps-arc-h2 {
+  font-family: var(--ps-display);
+  font-weight: 400;
+  font-size: clamp(26px, 2.4vw, 38px);
+  line-height: 1;
+}
+
+.ps-arc-head .ps-hint {
+  margin-left: 0;
+  color: var(--ps-soft);
+}
+
+.ps-arc-stage {
+  position: relative;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+  outline-offset: -2px;
+  /* as pontas do arco somem num degradê */
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+
+.ps-arc-stage.is-dragging {
+  cursor: grabbing;
+  user-select: none;
+}
+
+.ps-arc-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ps-arc-card {
+  position: absolute;
+  top: 24px;
+  left: 50%;
+  width: var(--card-w, 220px);
+  transform-origin: 50% 50%;
+  will-change: transform, opacity;
+}
+
+.ps-arc-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.45s, opacity 0.45s;
+}
+
+.ps-arc-img {
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: 6px;
+  background: var(--ps-bg-2);
+  box-shadow: 0 18px 40px -20px rgba(0, 0, 0, 0.9);
+  outline: 1px solid rgba(236, 232, 225, 0.08);
+}
+
+.ps-arc-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.ps-arc-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.35s, transform 0.35s;
+}
+
+.ps-arc-title {
+  font-family: var(--ps-display);
+  font-size: clamp(17px, 1.3vw, 21px);
+  line-height: 1.15;
+}
+
+.ps-arc-kind {
+  font-family: var(--ps-mono);
+  font-size: 11px;
+  color: var(--ps-soft);
+}
+
+/* centro: legenda visível */
+.ps-arc-card.is-current .ps-arc-caption {
+  opacity: 1;
+  transform: none;
+}
+
+/* hover: o cartão sobe e se destaca; os outros recuam */
+.ps-arc-stage:not(.is-dragging) .ps-arc-inner:hover,
+.ps-arc-inner:focus-visible {
+  transform: translateY(-14px) scale(1.06);
+}
+
+.ps-arc-stage:not(.is-dragging) .ps-arc-inner:hover .ps-arc-img {
+  outline-color: var(--ps-amber);
+  box-shadow: 0 26px 50px -18px rgba(0, 0, 0, 0.95), 0 0 0 1px var(--ps-amber);
+}
+
+.ps-arc-stage:not(.is-dragging) .ps-arc-inner:hover .ps-arc-caption {
+  opacity: 1;
+  transform: none;
+}
+
+.ps-arc-stage:not(.is-dragging):has(.ps-arc-inner:hover) .ps-arc-inner:not(:hover) {
+  filter: brightness(0.55) saturate(0.8);
+}
+
+.ps-arc-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 8px;
+  font-family: var(--ps-mono);
+  font-size: 12px;
+  color: var(--ps-soft);
+}
+
+.ps-arc-controls button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(236, 232, 225, 0.35);
+  color: var(--ps-paper);
+  font-size: 16px;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.ps-arc-controls button:hover {
+  border-color: var(--ps-amber);
+  background: rgba(240, 160, 75, 0.08);
+}
+
+.ps-arc-count {
+  min-width: 64px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ps-arc-inner,
+  .ps-arc-caption {
+    transition: none;
+  }
+}

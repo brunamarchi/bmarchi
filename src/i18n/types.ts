@@ -37,43 +37,63 @@ export interface Dictionary {
     areasTitle: string;
     areas: { title: string; description: string }[];
   };
-  selectedWork: {
+  cases: {
+    number: string;
+    chapterLabel: string;
+    title: string;
+    intro: string;
+    challenge: string;
+    approach: string;
+    deliverables: string;
+    visit: string;
+  };
+  archive: {
     number: string;
     chapterLabel: string;
     title: string;
     intro: string;
     filterLabel: string;
     filterAll: string;
-    segments: Record<Exclude<ProjectSegment, 'digital'>, string>;
+    segments: Record<ProjectSegment, string>;
     alsoTitle: string;
     noImages: string;
     roleLabel: string;
     toolsLabel: string;
-  };
-  systems: {
-    number: string;
-    chapterLabel: string;
-    title: string;
-    quoteLine1: string;
-    quoteLine2: string;
-    tags: string[];
-  };
-  precision: {
-    number: string;
-    chapterLabel: string;
-    title: string;
-    intro: string;
-    exams: string[];
-    narrative: string[];
-  };
-  digital: {
-    number: string;
-    chapterLabel: string;
-    title: string;
-    intro: string;
     visit: string;
     privateApp: string;
     githubCta: string;
+  };
+  mural: {
+    workTitle: string;
+    hint: string;
+    pieces: string;
+  };
+  herbario: {
+    labelNo: string;
+    labelName: string;
+    labelFamily: string;
+    familyValue: string;
+    labelCollected: string;
+    collectedValue: string;
+    swatchTitle: string;
+    swatchIntro: string;
+    swatchNames: Record<'dry' | 'trees' | 'bark' | 'earth' | 'wood', string>;
+    collectionTitle: string;
+    collectionIntro: string;
+    showAll: string;
+    specimen: string;
+    notesTitle: string;
+    unpublished: string;
+    specimens: string;
+    labelType: string;
+    labelClient: string;
+    labelYear: string;
+  };
+  lightbox: {
+    open: string;
+    close: string;
+    prev: string;
+    next: string;
   };
   about: {
     number: string;

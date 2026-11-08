@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useI18n } from '../i18n';
 import type { PortfolioProject } from '../data/projects';
+import { useLightbox } from '../lib/lightbox';
 import styles from './ProjectCard.module.css';
 
 interface Props {
@@ -13,15 +14,21 @@ interface Props {
 
 export function ProjectCard({ project, linkLabel, fallbackNote }: Props) {
   const { t, locale } = useI18n();
+  const openLightbox = useLightbox();
   const [active, setActive] = useState(0);
   const main = project.assets[active];
 
   return (
     <article className={styles.card} aria-labelledby={`project-${project.id}`}>
       {main ? (
-        <div className={styles.media}>
+        <button
+          type="button"
+          className={`${styles.media} ${styles.mediaButton}`}
+          onClick={() => openLightbox(project.assets, active)}
+          aria-label={`${t.lightbox.open}: ${main.alt}`}
+        >
           <img className={styles.image} src={main.src} alt={main.alt} loading="lazy" />
-        </div>
+        </button>
       ) : (
         <div className={`${styles.media} ${styles.mediaEmpty}`} aria-hidden="true">
           <span>{project.title}</span>
@@ -64,12 +71,12 @@ export function ProjectCard({ project, linkLabel, fallbackNote }: Props) {
 
         <dl className={styles.meta}>
           <div>
-            <dt>{t.selectedWork.roleLabel}</dt>
+            <dt>{t.archive.roleLabel}</dt>
             <dd>{project.role[locale]}</dd>
           </div>
           {project.tools && (
             <div>
-              <dt>{t.selectedWork.toolsLabel}</dt>
+              <dt>{t.archive.toolsLabel}</dt>
               <dd>{project.tools.join(' · ')}</dd>
             </div>
           )}

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useI18n } from '../../i18n';
 import { useGsapReveal } from '../../hooks/useGsapReveal';
+import { coverImages } from '../../data/projects';
 import styles from './Cover.module.css';
 
 export function Cover() {
@@ -25,7 +26,7 @@ export function Cover() {
             </p>
             <p className={styles.subtitle}>{t.cover.subtitle}</p>
             <div className={styles.ctas}>
-              <a href="#work" className={styles.ctaPrimary}>
+              <a href="#cases" className={styles.ctaPrimary}>
                 {t.cover.ctaWork}
               </a>
               <a href="#contact" className={styles.ctaSecondary}>
@@ -33,6 +34,14 @@ export function Cover() {
               </a>
             </div>
           </div>
+          {/* Primeira tela já mostra trabalho, não só texto. */}
+          <a href="#cases" className={styles.collage} aria-label={t.cover.ctaWork}>
+            {coverImages.map((img) => (
+              <span className={styles.collageItem} key={img.src}>
+                <img src={img.src} alt={img.alt} />
+              </span>
+            ))}
+          </a>
         </div>
 
         <div className={styles.bottom}>
