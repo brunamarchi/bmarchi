@@ -26,6 +26,7 @@ const FEATURED = [
   'explorum', // didático digital
   'comodines-transmedia', // kit editorial em espanhol
   'poemas-miudinhos', // livro infantil, capa e miolo
+  'shell-team', // site: academia, área kids e pré-venda de livro
 ];
 const COPIES = 3;
 

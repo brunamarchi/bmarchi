@@ -31,6 +31,8 @@ import yoyoAbaUrso from '../assets/projects/yoyo-books/cover-aba-urso.jpg';
 import yoyoResolva from '../assets/projects/yoyo-books/cover-resolva.jpg';
 
 import shellTeamCover from '../assets/projects/shell-team/cover.jpg';
+import shellTeamHome from '../assets/projects/shell-team/index.jpg';
+import shellTeamLivro from '../assets/projects/shell-team/livro.jpg';
 
 import explorumCover from '../assets/projects/explorum/cover.jpg';
 import explorumRoda from '../assets/projects/explorum/p09.jpg';
@@ -291,12 +293,14 @@ export const projects: PortfolioProject[] = [
         en: 'The book’s character drives an illustrated identity; poster typography; an interactive timetable; a Kids area with games and colouring pages; a book pre-sale page.',
       },
       deliverables: {
-        pt: 'Site completo, no ar, com código aberto no GitHub.',
-        en: 'Complete live website, open source on GitHub.',
+        pt: 'Três frentes no ar: site da academia, área Shell Kids (jogos, brincadeiras e desenhos para colorir) e página de pré-venda do livro. Código aberto no GitHub.',
+        en: 'Three live fronts: the gym site, the Shell Kids area (games, activities and colouring pages) and the book pre-sale page. Open source on GitHub.',
       },
     },
     assets: [
-      { src: shellTeamCover, alt: 'Página inicial do site Shell Team, área Kids: ilustração da mestra de kimono e título "Cair, levantar e tentar de novo"', wide: true },
+      { src: shellTeamCover, alt: 'Área Shell Kids do site: ilustração da mestra de kimono segurando a faixa e o título "Vem brincar no tatame com a Shell!"', wide: true },
+      { src: shellTeamHome, alt: 'Página inicial do site Shell Team: foto de treino em preto e branco e o título "Treine jiu-jitsu de verdade"', wide: true },
+      { src: shellTeamLivro, alt: 'Página de pré-venda do livro O Cinturão de Ouro, com o livro em 3D e o selo de edição numerada', wide: true },
     ],
   },
 

@@ -628,4 +628,38 @@ export const projectCopy: Record<string, Record<Lang, ProjectCopy>> = {
       impact: 'L’enfant lit le poème, fabrique l’instrument et joue avec le rythme, comme le propose le sous-titre « pour jouer et rythmer ».',
     },
   },
+  'shell-team': {
+    pt: {
+      kind: 'Site · academia e livro infantil',
+      role: 'Design e construção do site',
+      headline: 'Um site para uma academia de jiu-jitsu que fala com adultos, pais e crianças, e ainda vende um livro.',
+      problem: 'A Shell Team, no Córrego Grande, em Florianópolis, tem turmas de adultos e kids e um livro infantil próprio, O Cinturão de Ouro. O site precisava levar à aula experimental, divertir as crianças e abrir a pré-venda do livro.',
+      solution: 'Desenhei e construí três frentes com uma mesma marca: o site da academia, com foto de treino e tipografia de cartaz; a área Shell Kids, ilustrada com a personagem do livro, com jogos, brincadeiras e desenhos para colorir; e a página de pré-venda do livro.',
+      impact: 'Site no ar, com aulas, horários, contato por WhatsApp, área Kids e pré-venda do livro. Código aberto no GitHub.',
+    },
+    en: {
+      kind: 'Website · gym and children’s book',
+      role: 'Site design and build',
+      headline: 'A website for a jiu-jitsu gym that speaks to adults, parents and kids, and sells a book too.',
+      problem: 'Shell Team, in Florianópolis, runs adult and kids’ classes and has its own children’s book, O Cinturão de Ouro. The site had to lead to a trial class, entertain children and open the book’s pre-sale.',
+      solution: 'I designed and built three fronts under one brand: the gym site, with training photography and poster typography; the Shell Kids area, illustrated with the book’s character, with games, activities and colouring pages; and the book’s pre-sale page.',
+      impact: 'Live site with classes, timetable, WhatsApp contact, a Kids area and the book pre-sale. Open source on GitHub.',
+    },
+    es: {
+      kind: 'Sitio web · academia y libro infantil',
+      role: 'Diseño y desarrollo del sitio',
+      headline: 'Un sitio para una academia de jiu-jitsu que habla con adultos, padres y niños, y además vende un libro.',
+      problem: 'Shell Team, en Florianópolis, tiene clases para adultos y niños y su propio libro infantil, O Cinturão de Ouro. El sitio tenía que llevar a la clase de prueba, entretener a los niños y abrir la preventa del libro.',
+      solution: 'Diseñé y desarrollé tres frentes con una misma marca: el sitio de la academia, con fotos de entrenamiento y tipografía de cartel; el área Shell Kids, ilustrada con la protagonista del libro, con juegos, actividades y dibujos para colorear; y la página de preventa del libro.',
+      impact: 'Sitio publicado, con clases, horarios, contacto por WhatsApp, área Kids y preventa del libro. Código abierto en GitHub.',
+    },
+    fr: {
+      kind: 'Site web · club et livre jeunesse',
+      role: 'Design et développement du site',
+      headline: 'Un site pour un club de jiu-jitsu qui parle aux adultes, aux parents et aux enfants, et qui vend aussi un livre.',
+      problem: 'Shell Team, à Florianópolis, propose des cours adultes et enfants et publie son propre livre jeunesse, O Cinturão de Ouro. Le site devait mener au cours d’essai, amuser les enfants et ouvrir la prévente du livre.',
+      solution: 'J’ai conçu et développé trois volets sous une même marque : le site du club, avec photos d’entraînement et typographie d’affiche ; l’espace Shell Kids, illustré avec l’héroïne du livre, avec jeux, activités et coloriages ; et la page de prévente du livre.',
+      impact: 'Site en ligne, avec cours, horaires, contact WhatsApp, espace Kids et prévente du livre. Code open source sur GitHub.',
+    },
+  },
 };
