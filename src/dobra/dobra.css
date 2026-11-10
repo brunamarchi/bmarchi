@@ -775,6 +775,29 @@ a {
   align-items: center;
   gap: 28px;
 }
+.db-cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  backdrop-filter: blur(10px) saturate(160%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.3s, color 0.3s;
+}
+.db-cv-btn:hover,
+.db-cv-btn:focus-visible {
+  background: rgba(255, 255, 255, 0.92);
+  color: #111;
+}
 .db-langs {
   display: flex;
   gap: 2px;
@@ -1057,6 +1080,13 @@ a {
     height: 1px;
     overflow: hidden;
     clip: rect(0 0 0 0);
+  }
+  .db-nav-right {
+    gap: 12px;
+  }
+  .db-cv-btn {
+    min-height: 40px;
+    padding: 8px 12px;
   }
   /* no celular o idioma fica dentro do Menu, com alvo de toque maior */
   .db-nav .db-langs {
@@ -1609,5 +1639,12 @@ a {
 @media (max-width: 760px) {
   .db-headline {
     font-size: var(--t-headline);
+  }
+}
+
+/* celulares estreitos: botão do currículo só com o ícone */
+@media (max-width: 359px) {
+  .db-cv-btn span {
+    display: none;
   }
 }
