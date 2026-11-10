@@ -66,7 +66,6 @@ export const clients: string[] = [
 
 export const profile = {
   name: 'Bruna Marchi',
-  location: 'Santa Catarina, Brasil',
   siteUrl: 'https://brunamarchi.github.io/bmarchi/',
   contact: {
     // E-mail que aparece em "Dados de contato" do LinkedIn dela (lido em 2026-09-17).
