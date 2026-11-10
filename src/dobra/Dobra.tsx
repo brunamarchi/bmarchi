@@ -18,15 +18,14 @@ const ORDER: Section[] = ['projetos', 'sobre', 'perfil', 'contato'];
 // Curadoria: 8 projetos, do mais forte para o mercado editorial ao mais
 // complementar. Os outros continuam em src/data/projects.ts (versão pôster).
 const FEATURED = [
+  'shell-team', // sites: academia, área Shell Kids (UX/UI) e pré-venda de livro
   'comecando-albertina', // projeto editorial completo: capa, caixa e miolo
+  'explorum', // didático digital
+  'comodines-transmedia', // kit editorial em espanhol, projeto internacional
   'poliedro', // didático em escala: sistema em centenas de páginas
   'mentalidades-matematicas', // design de informação, relatório
   'yoyo-books', // infantil / livro-brinquedo, mercado internacional
-  'josapar-tio-joao', // editorial para marca grande
-  'explorum', // didático digital
-  'comodines-transmedia', // kit editorial em espanhol
   'poemas-miudinhos', // livro infantil, capa e miolo
-  'shell-team', // site: academia, área kids e pré-venda de livro
 ];
 const COPIES = 3;
 

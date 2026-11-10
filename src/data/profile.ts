@@ -16,14 +16,14 @@ export const languages: LanguageEntry[] = [
 ];
 
 export const tools: string[] = [
+  'Figma',
   'Adobe InDesign',
   'Adobe Photoshop',
   'Adobe Illustrator',
+  'Adobe Firefly',
+  'HTML, CSS e JavaScript',
   'WoodWing Studio / Assets',
   'MathType',
-  'Mathtools',
-  'Figma',
-  'Adobe Firefly',
 ];
 
 export const expertiseAreas: string[] = [
@@ -61,6 +61,7 @@ export const clients: string[] = [
   'Obá Editorial',
   'A Girafa Editora',
   'Josapar / Tio João',
+  'Shell Team',
 ];
 
 export const profile = {
