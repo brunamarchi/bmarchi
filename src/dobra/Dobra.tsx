@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { projects, type PortfolioProject } from '../data/projects';
-import { clients, profile, tools } from '../data/profile';
+import { profile } from '../data/profile';
 import { LANGS, WHATSAPP, projectCopy, ui, type Lang, type Section } from './copy';
 import photo from './assets/bruna-escritorio.webp';
 import { displacementMap, supportsRefraction } from './glass';
@@ -13,7 +13,7 @@ import { initialLang } from './locale';
 const t = ui;
 const CV_URL = `${import.meta.env.BASE_URL}curriculo-bruna-marchi.pdf`;
 
-const ORDER: Section[] = ['projetos', 'sobre', 'perfil', 'contato'];
+const ORDER: Section[] = ['projetos', 'sobre', 'contato'];
 
 // Curadoria: 8 projetos, do mais forte para o mercado editorial ao mais
 // complementar. Os outros continuam em src/data/projects.ts (versão pôster).
@@ -544,73 +544,6 @@ function Modal({
                     {para}
                   </p>
                 ))}
-              </div>
-            )}
-
-            {open === 'perfil' && (
-              <div className="db-profile">
-                <p className="db-deck">{s.profileDeck}</p>
-                <section className="db-services" aria-label={s.servicesTitle}>
-                  <h3 className="db-sub">{s.servicesTitle}</h3>
-                  <ul>
-                    {s.services.map((it) => (
-                      <li key={it.title}>
-                        <strong>{it.title}</strong>
-                        <span>{it.text}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </section>
-                <section className="db-how" aria-label={s.howTitle}>
-                  <h3 className="db-sub">{s.howTitle}</h3>
-                  <ol>
-                    {s.how.map((h) => (
-                      <li key={h}>{h}</li>
-                    ))}
-                  </ol>
-                </section>
-                <dl>
-                  <div>
-                    <dt>{s.clients}</dt>
-                    <dd>
-                      <ul className="db-chips">
-                        {clients.map((c) => (
-                          <li key={c}>{c}</li>
-                        ))}
-                      </ul>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>{s.tools}</dt>
-                    <dd>
-                      <ul className="db-chips">
-                        {tools.map((c) => (
-                          <li key={c}>{c}</li>
-                        ))}
-                      </ul>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>{s.langs}</dt>
-                    <dd>
-                      <ul className="db-chips">
-                        {s.langList.map((c) => (
-                          <li key={c}>{c}</li>
-                        ))}
-                      </ul>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>{s.formats}</dt>
-                    <dd>
-                      <ul className="db-chips">
-                        {s.formatList.map((c) => (
-                          <li key={c}>{c}</li>
-                        ))}
-                      </ul>
-                    </dd>
-                  </div>
-                </dl>
               </div>
             )}
 

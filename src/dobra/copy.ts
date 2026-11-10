@@ -9,7 +9,7 @@
 
 export type Lang = 'pt' | 'en' | 'es' | 'fr';
 export const LANGS: Lang[] = ['pt', 'en', 'es', 'fr'];
-export type Section = 'projetos' | 'sobre' | 'perfil' | 'contato';
+export type Section = 'projetos' | 'sobre' | 'contato';
 
 /**
  * WhatsApp da Bruna: só dígitos, com código do país e DDD (ex.: 5548999999999).
@@ -76,7 +76,7 @@ export const ui: Record<Lang, UI> = {
     htmlLang: 'pt-BR',
     docTitle: 'Bruna Marchi | Designer sênior: UX/UI, marca, direção de arte e editorial',
     h1: 'Bruna Marchi, designer sênior: sites e UX/UI, marca, direção de arte, design editorial e ilustração',
-    items: { projetos: 'Projetos', sobre: 'Sobre', perfil: 'Perfil', contato: 'Contato' },
+    items: { projetos: 'Projetos', sobre: 'Sobre', contato: 'Contato' },
     menu: 'Menu',
     close: 'Fechar',
     portfolio: 'Portfólio',
@@ -94,7 +94,7 @@ export const ui: Record<Lang, UI> = {
     about: [
       'Sou Bruna Marchi, designer sênior com mais de dez anos de mercado. Desenho sites, interfaces, materiais de marca, livros e ilustrações. Começo todo projeto pelo que precisa ser comunicado e para quem. O formato vem depois.',
       'Meu trabalho mais recente é o site da Shell Team, uma academia de jiu-jitsu: desenhei e construí as páginas, uma área infantil com jogos e a pré-venda de um livro. Antes, fui editora de arte de coleções inteiras, coordenando ilustradores e estúdios externos para entregar no prazo. Foi ali que aprendi a criar sistemas visuais que se mantêm coerentes em qualquer tamanho de projeto.',
-      'Já trabalhei com Editora do Brasil, Poliedro Educação, Saraiva, Moderna, Macmillan, Editacuja, Yoyo Books e Shell Team, e num projeto internacional para a Colômbia, com o MinTIC e a Proexport. Trabalho remoto, de Santa Catarina, para clientes no Brasil e no exterior.',
+      'Já trabalhei com Editora do Brasil, Poliedro Educação, Saraiva, Moderna, Macmillan, Editacuja, Yoyo Books e Shell Team, e num projeto internacional para a Colômbia, com o MinTIC e a Proexport. Atendo clientes no Brasil e no exterior.',
     ],
     profileDeck: 'Designer sênior generalista: digital, marca, direção de arte e editorial.',
     servicesTitle: 'O que eu faço',
@@ -117,7 +117,7 @@ export const ui: Record<Lang, UI> = {
     langs: 'Idiomas',
     langList: ['Português', 'Inglês', 'Espanhol', 'Francês'],
     formats: 'Formatos de trabalho',
-    formatList: ['100% remoto', 'Freelance por projeto', 'Contrato PJ', 'Vaga CLT'],
+    formatList: ['Vaga CLT', 'Contrato PJ', 'Freelance por projeto'],
     closing: 'Tem um projeto ou uma vaga? Vamos conversar.',
     waTitle: 'Mande uma mensagem',
     waName: 'Seu nome',
@@ -141,7 +141,7 @@ export const ui: Record<Lang, UI> = {
     htmlLang: 'en',
     docTitle: 'Bruna Marchi | Senior designer: UX/UI, brand, art direction and editorial',
     h1: 'Bruna Marchi, senior designer: websites and UX/UI, brand, art direction, editorial design and illustration',
-    items: { projetos: 'Work', sobre: 'About', perfil: 'Profile', contato: 'Contact' },
+    items: { projetos: 'Work', sobre: 'About', contato: 'Contact' },
     menu: 'Menu',
     close: 'Close',
     portfolio: 'Portfolio',
@@ -159,7 +159,7 @@ export const ui: Record<Lang, UI> = {
     about: [
       'I’m Bruna Marchi, a senior designer with more than ten years in the industry. I design websites, interfaces, brand materials, books and illustrations. I start every project with what needs to be communicated, and to whom. The format comes later.',
       'My latest project is the website for Shell Team, a jiu-jitsu gym: I designed and built the pages, a kids’ area with games and a pre-sale page for a book. Before that, I was art editor on entire book series, coordinating illustrators and external studios to deliver on time. That is where I learned to build visual systems that stay consistent at any project size.',
-      'I’ve worked with Editora do Brasil, Poliedro Educação, Saraiva, Moderna, Macmillan, Editacuja, Yoyo Books and Shell Team, and on an international project for Colombia with MinTIC and Proexport. I work remotely from southern Brazil, for clients in Brazil and abroad.',
+      'I’ve worked with Editora do Brasil, Poliedro Educação, Saraiva, Moderna, Macmillan, Editacuja, Yoyo Books and Shell Team, and on an international project for Colombia with MinTIC and Proexport. I work with clients in Brazil and abroad.',
     ],
     profileDeck: 'Senior multidisciplinary designer: digital, brand, art direction and editorial.',
     servicesTitle: 'What I do',
@@ -182,7 +182,7 @@ export const ui: Record<Lang, UI> = {
     langs: 'Languages',
     langList: ['Portuguese', 'English', 'Spanish', 'French'],
     formats: 'Ways to work together',
-    formatList: ['Fully remote', 'Freelance projects', 'Contract', 'Full-time role'],
+    formatList: ['Full-time role', 'Contract', 'Freelance projects'],
     closing: 'Have a project or a role? Let’s talk.',
     waTitle: 'Send a message',
     waName: 'Your name',
@@ -206,7 +206,7 @@ export const ui: Record<Lang, UI> = {
     htmlLang: 'es',
     docTitle: 'Bruna Marchi | Diseñadora sénior: UX/UI, marca, dirección de arte y editorial',
     h1: 'Bruna Marchi, diseñadora sénior: sitios web y UX/UI, marca, dirección de arte, diseño editorial e ilustración',
-    items: { projetos: 'Proyectos', sobre: 'Sobre mí', perfil: 'Perfil', contato: 'Contacto' },
+    items: { projetos: 'Proyectos', sobre: 'Sobre mí', contato: 'Contacto' },
     menu: 'Menú',
     close: 'Cerrar',
     portfolio: 'Portafolio',
@@ -224,7 +224,7 @@ export const ui: Record<Lang, UI> = {
     about: [
       'Soy Bruna Marchi, diseñadora sénior con más de diez años de trayectoria. Diseño sitios web, interfaces, materiales de marca, libros e ilustraciones. Empiezo cada proyecto por lo que hay que comunicar y a quién. El formato viene después.',
       'Mi trabajo más reciente es el sitio de Shell Team, una academia de jiu-jitsu: diseñé y construí las páginas, un área infantil con juegos y la preventa de un libro. Antes fui editora de arte de colecciones enteras, coordinando ilustradores y estudios externos para entregar a tiempo. Ahí aprendí a crear sistemas visuales que se mantienen coherentes en proyectos de cualquier tamaño.',
-      'He trabajado con Editora do Brasil, Poliedro Educação, Saraiva, Moderna, Macmillan, Editacuja, Yoyo Books y Shell Team, y en un proyecto internacional para Colombia con MinTIC y Proexport. Trabajo en remoto desde el sur de Brasil, para clientes en Brasil y en el exterior.',
+      'He trabajado con Editora do Brasil, Poliedro Educação, Saraiva, Moderna, Macmillan, Editacuja, Yoyo Books y Shell Team, y en un proyecto internacional para Colombia con MinTIC y Proexport. Trabajo con clientes en Brasil y en el exterior.',
     ],
     profileDeck: 'Diseñadora sénior multidisciplinar: digital, marca, dirección de arte y editorial.',
     servicesTitle: 'Qué hago',
@@ -247,7 +247,7 @@ export const ui: Record<Lang, UI> = {
     langs: 'Idiomas',
     langList: ['Portugués', 'Inglés', 'Español', 'Francés'],
     formats: 'Formas de trabajo',
-    formatList: ['100 % remoto', 'Freelance por proyecto', 'Contrato', 'Puesto en plantilla'],
+    formatList: ['Puesto en plantilla', 'Contrato', 'Freelance por proyecto'],
     closing: '¿Tienes un proyecto o un puesto? Hablemos.',
     waTitle: 'Envíame un mensaje',
     waName: 'Tu nombre',
@@ -271,7 +271,7 @@ export const ui: Record<Lang, UI> = {
     htmlLang: 'fr',
     docTitle: 'Bruna Marchi | Designer senior : UX/UI, marque, direction artistique et édition',
     h1: 'Bruna Marchi, designer senior : sites web et UX/UI, marque, direction artistique, design éditorial et illustration',
-    items: { projetos: 'Projets', sobre: 'À propos', perfil: 'Profil', contato: 'Contact' },
+    items: { projetos: 'Projets', sobre: 'À propos', contato: 'Contact' },
     menu: 'Menu',
     close: 'Fermer',
     portfolio: 'Portfolio',
@@ -289,7 +289,7 @@ export const ui: Record<Lang, UI> = {
     about: [
       'Je suis Bruna Marchi, designer senior avec plus de dix ans de métier. Je conçois des sites, des interfaces, des supports de marque, des livres et des illustrations. Je commence chaque projet par ce qu’il faut communiquer, et à qui. Le format vient ensuite.',
       'Mon projet le plus récent est le site de Shell Team, un club de jiu-jitsu : j’ai conçu et développé les pages, un espace enfants avec des jeux et la prévente d’un livre. Avant cela, j’ai été éditrice graphique de collections entières, en coordonnant illustrateurs et studios externes pour livrer dans les délais. C’est là que j’ai appris à créer des systèmes visuels qui restent cohérents, quelle que soit la taille du projet.',
-      'J’ai travaillé avec Editora do Brasil, Poliedro Educação, Saraiva, Moderna, Macmillan, Editacuja, Yoyo Books et Shell Team, ainsi que sur un projet international pour la Colombie, avec le MinTIC et Proexport. Je travaille à distance depuis le sud du Brésil, pour des clients au Brésil et à l’étranger.',
+      'J’ai travaillé avec Editora do Brasil, Poliedro Educação, Saraiva, Moderna, Macmillan, Editacuja, Yoyo Books et Shell Team, ainsi que sur un projet international pour la Colombie, avec le MinTIC et Proexport. Je travaille avec des clients au Brésil et à l’étranger.',
     ],
     profileDeck: 'Designer senior pluridisciplinaire : digital, marque, direction artistique et édition.',
     servicesTitle: 'Ce que je fais',
@@ -312,7 +312,7 @@ export const ui: Record<Lang, UI> = {
     langs: 'Langues',
     langList: ['Portugais', 'Anglais', 'Espagnol', 'Français'],
     formats: 'Modes de collaboration',
-    formatList: ['100 % à distance', 'Freelance au projet', 'Contrat', 'Poste salarié'],
+    formatList: ['Poste salarié', 'Contrat', 'Freelance au projet'],
     closing: 'Un projet ou un poste ? Parlons-en.',
     waTitle: 'Envoyez-moi un message',
     waName: 'Votre nom',
