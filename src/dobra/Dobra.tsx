@@ -1,24 +1,54 @@
 import { Fragment, useEffect, useRef, useState } from 'react';
 import { projects, type PortfolioProject } from '../data/projects';
 import { profile } from '../data/profile';
-import { LANGS, WHATSAPP, projectCopy, ui, type Lang, type Section } from './copy';
+import {
+  FEATURED_UX,
+  LANGS,
+  WHATSAPP,
+  initialFocus,
+  projectCopy as baseProjectCopy,
+  ui,
+  uxProjectCopy,
+  uxUi,
+  type Lang,
+  type ProjectCopy,
+  type Section,
+  type UI,
+} from './copy';
 import photo from './assets/bruna-escritorio.webp';
 import { displacementMap, supportsRefraction } from './glass';
 import { initialLang } from './locale';
+import { longCaseFor } from './cases';
 
 // Versão "dobra": o site inteiro é a primeira dobra. A foto da Bruna no
 // escritório cobre todo o banner e um carrossel de palavras gigante
 // (arrastável). Cada palavra abre um modal. Textos em src/dobra/copy.ts (pt/en/es/fr).
 
-const t = ui;
+// ?foco=ux: versão para vagas de UX e produto (ordem e textos próprios em pt/en).
+const FOCUS = initialFocus();
+const HOME = FOCUS ? `./?foco=${FOCUS}` : './?versao=dobra';
+
+const t: Record<Lang, UI> = FOCUS
+  ? (Object.fromEntries(LANGS.map((l) => [l, { ...ui[l], ...uxUi[l] }])) as Record<Lang, UI>)
+  : ui;
+
+const projectCopy: Record<string, Record<Lang, ProjectCopy>> = FOCUS
+  ? Object.fromEntries(
+      Object.entries(baseProjectCopy).map(([id, byLang]) => [
+        id,
+        Object.fromEntries(LANGS.map((l) => [l, { ...byLang[l], ...uxProjectCopy[id]?.[l] }])) as Record<Lang, ProjectCopy>,
+      ]),
+    )
+  : baseProjectCopy;
 const CV_URL = `${import.meta.env.BASE_URL}curriculo-bruna-marchi.pdf`;
 
 const ORDER: Section[] = ['projetos', 'sobre', 'contato'];
 
 // Curadoria: 8 projetos, do mais forte para o mercado editorial ao mais
 // complementar. Os outros continuam em src/data/projects.ts (versão pôster).
-const FEATURED = [
+const FEATURED_DEFAULT = [
   'shell-team', // sites: academia, área Shell Kids (UX/UI) e pré-venda de livro
+  'primepork', // produto digital: sistema de gestão, com case completo
   'comecando-albertina', // projeto editorial completo: capa, caixa e miolo
   'explorum', // didático digital
   'comodines-transmedia', // kit editorial em espanhol, projeto internacional
@@ -27,6 +57,7 @@ const FEATURED = [
   'yoyo-books', // infantil / livro-brinquedo, mercado internacional
   'poemas-miudinhos', // livro infantil, capa e miolo
 ];
+const FEATURED = FOCUS ? FEATURED_UX : FEATURED_DEFAULT;
 const COPIES = 3;
 
 function LangSwitch({ lang, onLang, label }: { lang: Lang; onLang: (l: Lang) => void; label: string }) {
@@ -243,7 +274,7 @@ export function Dobra() {
         </div>
 
         <header className="db-nav">
-          <a className="db-logo" href="./?versao=dobra">
+          <a className="db-logo" href={HOME}>
             Bruna Marchi
           </a>
           <div className="db-nav-right">
@@ -669,6 +700,8 @@ function ProjectView({ p, lang, onBack }: { p: PortfolioProject; lang: Lang; onB
   const s = t[lang];
   const [idx, setIdx] = useState(0);
   const n = p.assets.length;
+  const [caseOpen, setCaseOpen] = useState(false);
+  const full = longCaseFor(p.id, lang);
   const base = lang === 'pt' ? 'pt' : 'en';
   const pc = projectCopy[p.id]?.[lang] ?? {
     kind: p.kind[base],
@@ -742,7 +775,66 @@ function ProjectView({ p, lang, onBack }: { p: PortfolioProject; lang: Lang; onB
             {s.visit} ↗
           </a>
         )}
+        {full && (
+          <button type="button" className="db-mini" aria-expanded={caseOpen} onClick={() => setCaseOpen((o) => !o)}>
+            {caseOpen ? full.close : full.open} {caseOpen ? '↑' : '↓'}
+          </button>
+        )}
       </div>
+      {full && caseOpen && (
+        <section className="db-case">
+          <p className="db-case-note">{full.note}</p>
+          {full.sections.map((sec, i) => (
+            <div className="db-case-sec" key={sec.title}>
+              <h3>
+                <span>{String(i + 1).padStart(2, '0')}</span>
+                {sec.title}
+              </h3>
+              <div className="db-case-body">
+                {sec.body?.map((par) => <p key={par}>{par}</p>)}
+                {sec.entries &&
+                  (sec.ordered ? (
+                    <ol className="db-case-entries">
+                      {sec.entries.map((e) => (
+                        <li key={e.label}>
+                          <strong>{e.label}</strong>
+                          <span>{e.text}</span>
+                          {e.meta && <em>{e.meta}</em>}
+                        </li>
+                      ))}
+                    </ol>
+                  ) : (
+                    <ul className="db-case-entries">
+                      {sec.entries.map((e) => (
+                        <li key={e.label}>
+                          <strong>{e.label}</strong>
+                          <span>{e.text}</span>
+                          {e.meta && <em>{e.meta}</em>}
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
+                {sec.items &&
+                  (sec.ordered ? (
+                    <ol className="db-case-list">{sec.items.map((it) => <li key={it}>{it}</li>)}</ol>
+                  ) : (
+                    <ul className="db-case-list">{sec.items.map((it) => <li key={it}>{it}</li>)}</ul>
+                  ))}
+                {sec.groups && (
+                  <div className="db-case-groups">
+                    {sec.groups.map((g) => (
+                      <div key={g.label}>
+                        <strong>{g.label}</strong>
+                        <ul className="db-case-list">{g.items.map((it) => <li key={it}>{it}</li>)}</ul>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </section>
+      )}
     </article>
   );
 }

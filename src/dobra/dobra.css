@@ -1648,3 +1648,134 @@ a {
     display: none;
   }
 }
+
+/* case completo (segunda camada da ficha de projeto) */
+.db-case {
+  grid-column: 1 / -1;
+  margin-top: var(--s6, 24px);
+  padding-top: var(--s6, 24px);
+  border-top: 1px solid var(--db-line);
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  animation: db-fade 0.4s ease both;
+}
+.db-case-note {
+  margin: 0;
+  font-size: 14px;
+  color: var(--label-2, var(--db-muted));
+}
+.db-case-sec {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) 3fr;
+  gap: 8px 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--db-line);
+}
+.db-case-sec h3 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--db-accent);
+  display: flex;
+  gap: 10px;
+}
+.db-case-sec h3 span {
+  color: var(--label-2, var(--db-muted));
+  font-variant-numeric: tabular-nums;
+}
+.db-case-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 68ch;
+  font-size: var(--t-body, 17px);
+  line-height: 1.55;
+}
+.db-case-body p {
+  margin: 0;
+}
+.db-case-entries,
+.db-case-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.db-case-list {
+  gap: 10px;
+}
+.db-case-entries li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.db-case-entries strong,
+.db-case-groups strong {
+  font-weight: 600;
+  color: var(--label, var(--db-fg));
+}
+.db-case-entries em {
+  font-style: normal;
+  font-size: 13px;
+  color: var(--label-2, var(--db-muted));
+}
+ol.db-case-entries,
+ol.db-case-list {
+  counter-reset: db-case;
+}
+ol.db-case-entries > li,
+ol.db-case-list > li {
+  counter-increment: db-case;
+  position: relative;
+  padding-left: 30px;
+}
+ol.db-case-entries > li::before,
+ol.db-case-list > li::before {
+  content: counter(db-case);
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-variant-numeric: tabular-nums;
+  color: var(--db-accent);
+  font-weight: 600;
+}
+ul.db-case-list > li {
+  position: relative;
+  padding-left: 18px;
+}
+ul.db-case-list > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.6;
+}
+.db-case-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  max-width: none;
+}
+.db-case-groups > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.db-case-groups .db-case-list {
+  font-size: 15px;
+  line-height: 1.45;
+}
+@media (max-width: 760px) {
+  .db-case-sec,
+  .db-case-groups {
+    grid-template-columns: 1fr;
+  }
+}

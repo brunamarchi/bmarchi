@@ -34,6 +34,13 @@ import shellTeamCover from '../assets/projects/shell-team/cover.jpg';
 import shellTeamHome from '../assets/projects/shell-team/index.jpg';
 import shellTeamLivro from '../assets/projects/shell-team/livro.jpg';
 
+import primeporkPainel from '../assets/projects/primepork/painel.jpg';
+import primeporkCelular from '../assets/projects/primepork/celular.jpg';
+import primeporkMapa from '../assets/projects/primepork/mapa.jpg';
+import primeporkPedidos from '../assets/projects/primepork/pedidos.jpg';
+import primeporkEstoque from '../assets/projects/primepork/estoque.jpg';
+import primeporkCliente from '../assets/projects/primepork/cliente.jpg';
+
 import explorumCover from '../assets/projects/explorum/cover.jpg';
 import explorumRoda from '../assets/projects/explorum/p09.jpg';
 import explorumLista from '../assets/projects/explorum/p24.jpg';
@@ -443,17 +450,25 @@ export const projects: PortfolioProject[] = [
   {
     id: 'primepork',
     title: 'Prime Pork',
-    client: 'Prime Pork',
+    client: 'Prime Pork · São Paulo',
     year: '2026',
     segment: 'digital',
-    kind: { pt: 'App web · controle de estoque', en: 'Web app · inventory' },
-    role: { pt: 'Design de interface e construção', en: 'Interface design and build' },
+    kind: { pt: 'Sistema web · gestão de pedidos e estoque', en: 'Web app · orders and stock management' },
+    role: { pt: 'Produto, UX/UI, modelagem de dados e construção', en: 'Product, UX/UI, data modelling and build' },
     tools: ['React', 'Tailwind', 'Supabase'],
     summary: {
-      pt: 'Sistema mobile-first para um pequeno produtor: estoque, compras, pedidos por cliente e mapa de clientes. Uso interno, com login.',
-      en: 'Mobile-first system for a small food producer: stock, purchases, orders per client and a client map. Internal use, behind login.',
+      pt: 'Sistema para um produtor local de alimentos: pedidos, estoque, produção, recebíveis por cliente, previsão de recompra e mapa da carteira. Uso interno, com login.',
+      en: 'System for a local food producer: orders, stock, production, receivables per client, reorder forecast and a map of the client base. Internal use, behind login.',
     },
-    assets: [],
+    // Telas capturadas de uma cópia local com dados fictícios (nenhum dado real da empresa).
+    assets: [
+      { src: primeporkPainel, alt: 'Painel do Prime Pork no desktop, com dados fictícios: receita do período, valores a receber e atrasados, estoque disponível e clientes em risco', wide: true },
+      { src: primeporkCelular, alt: 'Três telas do Prime Pork no celular, com dados fictícios: painel, lista de pedidos e mapa de clientes', wide: true },
+      { src: primeporkMapa, alt: 'Mapa de clientes sobre a cidade de São Paulo, com dados fictícios: pontos coloridos por estado de recompra', wide: true },
+      { src: primeporkPedidos, alt: 'Lista de pedidos com totais do período e status de entrega e pagamento, com dados fictícios', wide: true },
+      { src: primeporkEstoque, alt: 'Tela de estoque com saldo disponível e livro-razão diário de entradas e saídas, com dados fictícios', wide: true },
+      { src: primeporkCliente, alt: 'Ficha de um cliente fictício: prazo, preço, intervalo médio entre compras e histórico de pedidos', wide: true },
+    ],
   },
 
   // --- Sem imagem publicável: lista compacta no fim do Arquivo -------------

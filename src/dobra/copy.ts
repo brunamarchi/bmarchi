@@ -663,4 +663,128 @@ export const projectCopy: Record<string, Record<Lang, ProjectCopy>> = {
       impact: 'Les visiteurs venus seulement pour acheter le livre ont fini par chercher un cours d’essai, et la demande a été forte. L’espace Kids va donc s’agrandir pour devenir un point de contact avec les familles, avec des idées d’activités pour les vacances scolaires.',
     },
   },
+  primepork: {
+    pt: {
+      kind: 'Sistema web · gestão de pedidos e estoque',
+      role: 'Produto, UX/UI, modelagem de dados e construção',
+      headline: 'Um sistema que transforma o registro da operação em alerta: estoque, cobrança e recompra de cada cliente.',
+      problem: 'A Prime Pork distribui torresmo de rolo para bares de São Paulo e controlava tudo em planilhas de Excel. A planilha não sinalizava exceções, não garantia dados íntegros entre a equipe e exigia interpretação manual a cada decisão.',
+      solution: 'Em contato direto com a diretoria, tratei a planilha como especificação e desenhei um sistema que preserva as regras da empresa. Modelei os dados, defini os alertas e construí a interface para celular e desktop: painel por exceção, estoque no método da empresa, recebíveis por cliente, previsão de recompra e mapa da carteira.',
+      impact: 'A diretoria passa a decidir pelo que o painel sinaliza: reposição pela projeção de consumo, cobrança pelo vencimento e contato com o cliente antes da perda. O mapa mostra onde a empresa atua e onde ainda não está.',
+    },
+    en: {
+      kind: 'Web app · orders and stock management',
+      role: 'Product, UX/UI, data modelling and build',
+      headline: 'A system that turns operating records into alerts: stock, collection and each client’s next order.',
+      problem: 'Prime Pork distributes rolled pork crackling to bars in São Paulo and ran everything on Excel spreadsheets. The spreadsheet flagged no exceptions, did not keep data consistent across the team and required manual interpretation for every decision.',
+      solution: 'Working directly with the directors, I treated the spreadsheet as the specification and designed a system that preserves the company’s rules. I modelled the data, defined the alerts and built the interface for mobile and desktop: an exception-based dashboard, stock in the company’s own method, receivables per client, a reorder forecast and a map of the client base.',
+      impact: 'The directors now decide from what the dashboard flags: replenishment by projected consumption, collection by due date, and contact with the client before the loss. The map shows where the company operates and where it does not yet.',
+    },
+    es: {
+      kind: 'Sistema web · gestión de pedidos y stock',
+      role: 'Producto, UX/UI, modelado de datos y desarrollo',
+      headline: 'Un sistema que convierte el registro de la operación en alertas: stock, cobro y recompra de cada cliente.',
+      problem: 'Prime Pork distribuye torresmo de rolo a bares de São Paulo y lo controlaba todo en hojas de Excel. La hoja no señalaba excepciones, no garantizaba datos íntegros entre el equipo y exigía interpretación manual en cada decisión.',
+      solution: 'En contacto directo con la dirección, traté la hoja de cálculo como especificación y diseñé un sistema que conserva las reglas de la empresa. Modelé los datos, definí las alertas y construí la interfaz para móvil y escritorio: panel por excepción, stock con el método de la empresa, cuentas por cobrar por cliente, previsión de recompra y mapa de la cartera.',
+      impact: 'La dirección decide a partir de lo que el panel señala: reposición según el consumo proyectado, cobro según el vencimiento y contacto con el cliente antes de perderlo. El mapa muestra dónde opera la empresa y dónde todavía no.',
+    },
+    fr: {
+      kind: 'Application web · gestion des commandes et du stock',
+      role: 'Produit, UX/UI, modélisation des données et développement',
+      headline: 'Un système qui transforme les données de l’activité en alertes : stock, recouvrement et réachat de chaque client.',
+      problem: 'Prime Pork distribue du torresmo de rolo aux bars de São Paulo et gérait tout dans des feuilles Excel. La feuille ne signalait aucune exception, ne garantissait pas l’intégrité des données au sein de l’équipe et exigeait une interprétation manuelle à chaque décision.',
+      solution: 'En contact direct avec la direction, j’ai traité la feuille de calcul comme une spécification et conçu un système qui préserve les règles de l’entreprise. J’ai modélisé les données, défini les alertes et développé l’interface pour mobile et ordinateur : tableau de bord par exception, stock selon la méthode de l’entreprise, créances par client, prévision de réachat et carte du portefeuille.',
+      impact: 'La direction décide à partir de ce que le tableau de bord signale : réapprovisionnement selon la consommation projetée, recouvrement selon l’échéance et contact avec le client avant de le perdre. La carte montre où l’entreprise est présente et où elle ne l’est pas encore.',
+    },
+  },
+};
+
+/* ------------------------------------------------------------------ */
+/* Foco "ux": versão do portfólio para vagas de UX e produto digital.   */
+/* Abre com ?foco=ux. Muda a ordem dos projetos e parte dos textos (pt  */
+/* e en); es e fr usam os textos padrão. Sem ?foco, nada muda no site.  */
+/* Fatos novos confirmados pela Bruna em 2026-11-16: medição do site da */
+/* Shell Team (painel com IA, Cloudflare Web Analytics, Google Search   */
+/* Console e planilha de vendas) e trabalho freelance com times de      */
+/* produto. Prime Pork: dados de src/data/projects.ts.                  */
+/* ------------------------------------------------------------------ */
+export type Focus = 'ux' | null;
+
+export function initialFocus(): Focus {
+  return new URLSearchParams(window.location.search).get('foco') === 'ux' ? 'ux' : null;
+}
+
+// Do mais próximo de produto digital e dados ao mais complementar.
+export const FEATURED_UX = [
+  'shell-team', // produto digital no ar, com resultado medido
+  'primepork', // sistema de gestão: dados, alertas e case completo
+  'mentalidades-matematicas', // dados e números para leitura em tela
+  'poliedro', // sistema visual em escala
+  'explorum', // design de informação: passos, infográficos
+  'comodines-transmedia', // sistema de jogo, projeto internacional em espanhol
+  'comecando-albertina', // conceito e acabamento
+];
+
+export const uxUi: Partial<Record<Lang, Partial<UI>>> = {
+  pt: {
+    docTitle: 'Bruna Marchi | Designer sênior: UX/UI, produtos digitais e design de informação',
+    h1: 'Bruna Marchi, designer sênior: UX/UI, produtos digitais, design de informação e sistemas visuais',
+    loader: ['UX/UI', 'Produto', 'Dados', 'Sistemas'],
+    about: [
+      'Sou Bruna Marchi, designer sênior com mais de dez anos de mercado. Desenho sites, interfaces e produtos digitais. Começo todo projeto pelo problema: quem vai usar, o que precisa entender e o que deve fazer depois. A tela vem depois.',
+      'Meu trabalho mais recente é o site da Shell Team, uma academia de jiu-jitsu. Desenhei e construí o site, uma área infantil com jogos e a pré-venda de um livro. Acompanho o resultado num painel em que uma IA reúne todos os dias os dados do Cloudflare Web Analytics e do Google Search Console. Cruzo esses dados com a planilha de vendas da equipe, porque as vendas acontecem só pelo WhatsApp.',
+      'Também desenhei e construí o Prime Pork, um sistema de gestão para um produtor local de São Paulo: pedidos, estoque, recebíveis por cliente, previsão de recompra e mapa da carteira, pensado primeiro para o celular. E trabalho com times de produto em projetos freelance.',
+      'Antes, fui editora de arte de coleções didáticas inteiras, com fórmulas, gráficos e centenas de páginas. Foi ali que aprendi a pensar em sistema: grid, hierarquia e estilos que se mantêm coerentes em qualquer escala.',
+      'Uso Figma e construo em HTML, CSS, JavaScript e React. Falo inglês e espanhol com fluência e atendo clientes no Brasil e no exterior.',
+    ],
+  },
+  en: {
+    docTitle: 'Bruna Marchi | Senior designer: UX/UI, digital products and information design',
+    h1: 'Bruna Marchi, senior designer: UX/UI, digital products, information design and visual systems',
+    loader: ['UX/UI', 'Product', 'Data', 'Systems'],
+    about: [
+      'I’m Bruna Marchi, a senior designer with more than ten years in the industry. I design websites, interfaces and digital products. I start every project with the problem: who will use it, what they need to understand and what they should do next. The screen comes later.',
+      'My latest project is the website for Shell Team, a jiu-jitsu gym. I designed and built the site, a kids’ area with games and a pre-sale page for a book. I track the results on a dashboard where an AI gathers data from Cloudflare Web Analytics and Google Search Console every day. I cross that data with the team’s sales spreadsheet, because sales happen only on WhatsApp.',
+      'I also designed and built Prime Pork, a mobile-first management system for a local food producer in São Paulo: orders, stock, receivables per client, a reorder forecast and a map of the client base. And I work with product teams on freelance projects.',
+      'Before that, I was art editor on entire textbook series, with formulas, charts and hundreds of pages. That is where I learned to think in systems: grid, hierarchy and styles that stay consistent at any scale.',
+      'I use Figma and build in HTML, CSS, JavaScript and React. I’m fluent in English and Spanish and work with clients in Brazil and abroad.',
+    ],
+  },
+};
+
+export const uxProjectCopy: Record<string, Partial<Record<Lang, Partial<ProjectCopy>>>> = {
+  'shell-team': {
+    pt: {
+      headline: 'Um site que leva à aula experimental e à venda de um livro, com o resultado acompanhado todos os dias.',
+      impact: 'Quem entrou no site só para comprar o livro acabou procurando aula experimental, e a procura foi grande. Acompanho isso num painel em que uma IA reúne todos os dias os dados do Cloudflare Web Analytics e do Google Search Console. Como as vendas acontecem só pelo WhatsApp, cruzo esses dados com a planilha de vendas que a equipe da academia preenche. Com isso decido o que mudar no site e levo as recomendações para a equipe.',
+    },
+    en: {
+      headline: 'A website that leads to trial classes and book sales, with results tracked every day.',
+      impact: 'People who came to the site only to buy the book ended up looking for a trial class, and demand was high. I track this on a dashboard where an AI gathers data from Cloudflare Web Analytics and Google Search Console every day. Because sales happen only on WhatsApp, I cross that data with the sales spreadsheet the gym’s team fills in. That tells me what to change on the site, and I take the recommendations to the team.',
+    },
+  },
+  'mentalidades-matematicas': {
+    pt: {
+      kind: 'Design de informação · relatório anual',
+      headline: 'Um ano de dados organizado para ser lido na tela, com os números-chave em destaque.',
+    },
+    en: {
+      kind: 'Information design · annual report',
+      headline: 'A year of data organised to be read on screen, with the key figures set large.',
+    },
+  },
+  poliedro: {
+    pt: {
+      kind: 'Sistema visual em escala · material didático',
+      headline: 'Um sistema de grid, hierarquia e estilos aplicado em centenas de páginas de exatas.',
+    },
+    en: {
+      kind: 'Visual system at scale · textbooks',
+      headline: 'One system of grid, hierarchy and styles applied across hundreds of STEM pages.',
+    },
+  },
+  explorum: {
+    pt: { kind: 'Design de informação · material didático' },
+    en: { kind: 'Information design · teaching material' },
+  },
 };
